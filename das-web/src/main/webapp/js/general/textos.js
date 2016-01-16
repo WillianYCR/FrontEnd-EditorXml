@@ -70,4 +70,7 @@ angular.module('app.textos', [])
 	servicio: 'Servicio',
 	nodo: 'Nodo',
 	perfil: 'Perfil'
+})
+.constant('queryRuta', {
+	urlMessageFormat: 'http://localhost:8080/ResDAS/MessageFormat'
 });

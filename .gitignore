@@ -1,0 +1,8 @@
+*.prefs
+das-web/.classpath
+das-web/.settings/.jsdtscope
+das-web/.settings/org.eclipse.wst.common.project.facet.core.xml
+das-web/.settings/org.eclipse.wst.jsdt.ui.superType.name
+das-web/.settings/org.eclipse.wst.jsdt.ui.superType.container
+das-web/.project
+das-web/.settings/org.eclipse.wst.common.component
