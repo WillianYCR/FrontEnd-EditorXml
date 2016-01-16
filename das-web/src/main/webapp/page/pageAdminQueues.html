@@ -1,0 +1,57 @@
+<div class="container">
+	<div>
+		<form class="form-group">
+			<h2>{{adminQueueTexto.titulo}}</h2>
+			<select class="form-control" style="width: 150px" id="tipoformato">
+			    <option>Seleccione...</option>
+                <option>adminCola1</option>
+                <option>adminCola2</option>
+                <option>adminCola3</option>
+                <option>adminCola4</option>
+                <option>adminCola5</option>
+            </select>
+			<br />
+			<div class="panel panel-default" style="width: 420px">
+			<div class="panel-body">
+				 <label>{{adminQueueTexto.adminQueueId}}</label> <input
+					type="text" id="messageFormatId" class="form-control"
+					style="width: 150px" required autofocus> <label>{{adminQueueTexto.workerThreadsCount}}</label>
+				<input type="text" id="messageFormatDesc" class="form-control"
+					style="width: 300px" required autofocus> <label>{{adminQueueTexto.messageType}}</label><br />
+				 <label>{{adminQueueTexto.identificadorMensaje}}</label>
+				<input type="text" id="routerConfigFile" class="form-control"
+					style="width: 300px" required autofocus> <label>{{adminQueueTexto.descripcionMensaje}}</label>
+				<input type="text" id="transformerConfigFile" class="form-control"
+                    style="width: 300px" required autofocus>
+                <label>{{adminQueueTexto.supportedMessageFormats}}</label><br />
+                <table>
+                    <tr>
+	                    <td>
+		                    <select class="form-control" style="width: 150px" id="tipotransformador">
+			                    <option>Seleccione...</option>
+			                    <option>ISOINTST</option>
+			                    <option>UNIINTER</option>
+			                </select> 
+	                    </td>
+	                    <td>-</td>
+	                    <td>
+	                        <button class="btn btn-success" ng-click="mas()" type="submit">{{botonTexto.mas}}</button>
+	                    </td>
+	                    <td>-</td>
+	                    <td>
+	                        <button class="btn btn-success" ng-click="menos()" type="submit">{{botonTexto.menos}}</button>
+	                    </td>
+                    </tr>
+                </table>
+                <ul class="list-group" style="width: 150px">
+				  <li class="list-group-item">ISOINTST</li>
+				  <li class="list-group-item">UNIINTER</li>
+				</ul>
+				<br />
+				<button class="btn btn-primary" ng-click="agregar()" type="submit">{{botonTexto.agregar}}</button>
+				<button class="btn btn-primary" ng-click="quitar()" type="submit">{{botonTexto.quitar}}</button>
+				<button class="btn btn-primary" ng-click="cancelar()" type="submit">{{botonTexto.cancelar}}</button>
+			</div></div>
+		</form>
+	</div>
+</div>

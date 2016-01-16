@@ -1,0 +1,39 @@
+angular.module('app.controllers')
+.controller('menuController',
+	['$scope', '$http', '$state', 'botonTexto',function($scope, $http, $state, botonTexto){
+	// establece el texto en la applicacion
+	$scope.botonTexto = botonTexto;
+
+	$scope.menu = [
+	{ nombre : 'Menu 1' },
+	{ nombre : 'Menu 2' },
+	{ nombre : 'Menu 3' },
+	{ nombre : 'Menu 4' },
+	{ nombre : 'Menu 5' }];
+
+	$scope.viewFormateador = function(){
+		$state.go('messageFormat');
+	};
+	$scope.viewCola = function(){
+		$state.go('adminQueue');
+	};
+	$scope.viewDriver = function(){
+		$state.go('driver');
+	};
+	$scope.viewBalanceador = function(){
+		$state.go('login');
+	};
+	$scope.viewRouter = function(){
+		$state.go('login');
+	};
+	$scope.viewServicio = function(){
+		$state.go('login');
+	};
+	$scope.viewNodo = function(){
+		$state.go('login');
+	};
+	$scope.viewPerfil = function(){
+		$state.go('login');
+	};
+	
+}]);

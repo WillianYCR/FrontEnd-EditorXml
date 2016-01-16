@@ -1,0 +1,86 @@
+<div class="container">
+	<div>
+		<form class="form-group">
+			<h2>{{driverTexto.titulo}}</h2>
+			<br />
+			<div class="panel panel-default" style="width: 700px">
+			<div class="panel-body">
+				<table>
+                    <tr>
+	                    <td>
+		                    <label>{{driverTexto.driverId}}</label> 
+							<input type="text" id="driverId" class="form-control" style="width: 150px" required autofocus> 
+	                    </td>
+	                    <td>
+	                    	<label>{{driverTexto.adminQueueId}}</label>
+	                        <select class="form-control" style="width: 150px" id="adminQueueId">
+		                	<option>Seleccione...</option>
+			                <option>adminCola1</option>
+			                <option>adminCola2</option>
+			                <option>adminCola3</option>
+			                <option>adminCola4</option>
+			                <option>adminCola5</option>
+		            	</select>
+	                    </td>
+	                    <td>
+	                        <label>{{driverTexto.type}}</label>
+							<input type="text" id="type" class="form-control" style="width: 200px" required autofocus> 
+	                    </td>
+                    </tr>
+                    <tr>
+	                    <td>
+		                    <label>{{driverTexto.timeOutConnect}}</label>
+							<input type="text" id="timeOutConnect" class="form-control" style="width: 200px" required autofocus>
+	                    </td>
+	                    <td>
+	                    	<label>{{driverTexto.timeOutRead}}</label>
+							<input type="text" id="timeOutRead" class="form-control" style="width: 200px" required autofocus>
+	                    </td>
+	                    <td>
+	                    	<label>{{driverTexto.retries}}</label>
+							<input type="text" id="retries" class="form-control" style="width: 200px" required autofocus>
+	                    </td>
+                    </tr>
+                    <tr>
+	                    <td>
+	                    	<label>{{driverTexto.timeOutQueueRead}}</label>
+							<input type="text" id="timeOutQueueRead" class="form-control" style="width: 200px" required autofocus>
+	                    </td>
+	                </tr>
+                </table>
+				<br />
+				<label>{{driverTexto.name}}</label>
+				<input type="text" id="name" class="form-control" style="width: 300px" required autofocus>
+				<label>{{driverTexto.port}}</label>
+				<input type="text" id="port" class="form-control" style="width: 300px" required autofocus>
+				<label>{{driverTexto.maxConcurrentConnections}}</label>
+				<input type="text" id="maxConcurrentConnections" class="form-control" style="width: 300px" required autofocus>
+				<label>{{driverTexto.forwardProcess}}</label>
+				<select class="form-control" style="width: 150px" id="forwardProcess">
+                    <option>Seleccione...</option>
+                    <option>ISOINTST</option>
+                    <option>NONENONE</option>
+                </select> 
+				<label>{{driverTexto.validaIp}}</label>
+				<select class="form-control" style="width: 100px" id="validaIp">
+                    <option>true</option>
+                    <option>false</option>
+                </select> 
+				<label>{{driverTexto.concurrentUserSupport}}</label>
+				<select class="form-control" style="width: 100px" id="concurrentUserSupport">
+                    <option>true</option>
+                    <option>false</option>
+                </select> 
+				<label>{{driverTexto.filters}}</label><br />
+				<label>{{driverTexto.inFilters}}</label>
+				<input type="text" id="inFilters" class="form-control" style="width: 400px" required autofocus>
+				<label>{{driverTexto.outFilters}}</label>
+				<input type="text" id="outFilters" class="form-control" style="width: 400px" required autofocus>
+				<br />
+				<button class="btn btn-primary" ng-click="agregar()" type="submit">{{botonTexto.agregar}}</button>
+				<button class="btn btn-primary" ng-click="quitar()" type="submit">{{botonTexto.quitar}}</button>
+				<button class="btn btn-primary" ng-click="cancelar()" type="submit">{{botonTexto.cancelar}}</button>
+			</div></div>
+		</form>
+	</div>
+</div>

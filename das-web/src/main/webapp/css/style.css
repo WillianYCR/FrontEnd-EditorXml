@@ -1,0 +1,110 @@
+header {
+	color: #fff;
+	background-color: #337ab7;
+	border-color: #2e6da4;
+	height: 80px;
+	width: 100%;
+	display: inline-block;
+}
+
+#menu {
+	background-color: #f5f5f5;
+	width: 150px;
+	float: left;
+	height: 100%;
+	margin: 0px 5px 0px 0px;
+}
+
+#cuerpo {
+	background-color: inherit;
+	float: left;
+	display: inline-block;
+	height: 100%;
+}
+
+#centro {
+	display: inline-block;
+	min-width: 600px;
+	height: 500px;
+	margin: 5px 5px 0px 5px;
+}
+
+footer {	
+	background-color: silver;
+	width: 100%;
+	border-top: 2px solid #000;
+	position: absolute;
+	bottom: 0;
+}
+
+table, th , td {
+  border: 2px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+  border-radius: 3px;
+}
+table tr:nth-child(odd) {
+  background-color: #f1f1f1;
+}
+table tr:nth-child(even) {
+  background-color: #ffffff;
+}
+
+.menuitem {
+	
+}
+
+
+.form-signin {
+	max-width: 330px;
+	padding: 15px;
+	margin: 0 auto;
+}
+
+.form-signin .form-signin-heading, .form-signin .checkbox {
+	margin-bottom: 10px;
+	font-size: 26px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.form-signin .checkbox {
+	font-weight: normal;
+}
+
+.form-signin .form-control {
+	position: relative;
+	height: auto;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 10px;
+	font-size: 16px;
+}
+
+.form-signin .form-control:focus {
+	z-index: 2;
+}
+
+.form-signin input[type="email"] {
+	margin-bottom: -1px;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+	margin-bottom: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+.form-signin #olvidoContrasenia {
+	margin-top: 10px;
+	text-align: right;
+}
+
+.oculto {
+	display: none;	
+}
+
+

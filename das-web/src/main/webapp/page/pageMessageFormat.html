@@ -1,0 +1,60 @@
+<div class="container">
+	<div>
+		<form class="form-group">
+			<h4>{{messageFormatTexto.titulo}}</h4>
+			<div class="panel panel-default" style="width: 420px">
+				<div class="panel-body">
+					<label>{{messageFormatTexto.messageFormatId}}</label> 
+					<input type="text" id="messageFormatId" class="form-control" style="width: 150px" required autofocus
+						ng-model="selectMessageFormat.messageFormatId"> 
+					<label>{{messageFormatTexto.messageFormatDesc}}</label>
+					<input type="text" id="messageFormatDesc" class="form-control" style="width: 300px" required autofocus 
+						ng-model="selectMessageFormat.messageFormatDesc"> 
+					<label>{{messageFormatTexto.transformerConfigFile}}</label>
+					<input type="text" id="transformerConfigFile" class="form-control" style="width: 300px" required autofocus
+						ng-model="selectMessageFormat.transformerConfigFile"> 
+					<label>{{messageFormatTexto.routerConfigFile}}</label>
+					<input type="text" id="routerConfigFile" class="form-control" style="width: 300px" required autofocus
+						ng-model="selectMessageFormat.routerConfigFile"> 
+					<label>{{messageFormatTexto.transformerStruct}}</label>
+
+					<select class="form-control" style="width: 150px" id="transformador" ng-model="selectMessageFormat.transformerStruct">
+						<option ng-repeat="valueType in listTypeFormater">{{valueType.transformerStruct}}</option>
+					</select> <br />
+
+					<button class="btn btn-primary" ng-click="nuevo()" type="submit">{{botonTexto.nuevo}}</button>
+					<button class="btn btn-primary" ng-click="grabar(selectMessageFormat)" type="submit">{{botonTexto.grabar}}</button>
+	                
+				</div>
+			</div>
+			<div class="alert alert-success" style="width: 650px">
+			  <strong>Success!</strong> {{responseRest}}
+			</div>
+			<table class="table" style="width: 650px">
+			    <thead>
+			     	<tr>
+				        <th style="width: 100px">{{tablaTexto.messageFormatId}}</th>
+				        <th style="width: 250px">{{tablaTexto.messageFormatDesc}}</th>
+				        <th style="width: 150px">{{tablaTexto.transformerConfigFile}}</th>
+				        <th style="width: 150px">{{tablaTexto.routerConfigFile}}</th>
+				        <th style="width: 150px">{{tablaTexto.opcionAction}}</th>
+			      	</tr>
+			    </thead>
+			    <tbody>
+			      	<tr class="success" ng-repeat="valueRow in listMessageFormat" ng-model="changeFila">
+				        <td>{{valueRow.messageFormatId}}</td>
+				        <td>{{valueRow.messageFormatDesc | uppercase}}</td>
+				        <td>{{valueRow.transformerConfigFile}}</td>
+				        <td>{{valueRow.routerConfigFile}}</td>
+				        <td >
+				        	<button class="btn btn-success btn-xs glyphicon glyphicon-pencil" 
+				        			ng-click="editar(valueRow.messageFormatId)"></button>
+				        	<button class="btn btn-danger btn-xs glyphicon glyphicon-ban-circle" 
+				        			ng-click="quitar(valueRow)"></button>
+				        </td>
+			      	</tr>
+			    </tbody>
+			</table>
+		</form>
+	</div>
+</div>
