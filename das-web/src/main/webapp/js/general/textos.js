@@ -24,14 +24,29 @@ angular.module('app.textos', [])
 	transformerStruct: 'Tipo estructura',
 	opcionAction: 'Accion'
 })
-.constant('adminQueueTexto', {
+.constant('queueTxt', {
+	//Descripcion de las controles individuales
 	titulo: 'ADMINISTRADOR DE COLAS',
-	adminQueueId: 'Identificador : ',
-	workerThreadsCount: 'Cantidad de hilos soportados :',
+	//******Descripcion de los atributos
+	attribute: 'Atributo general',
+	classManager: 'Clase:',
+	queueLocation: 'IP-Puerto:',
+	sleepTime: 'T. Espera:',
+	refreshTime: 'T. Refrescar:',
+	//******Descripcion de los Tag
+	adminQueueId: 'Identificador:',
+	workerThreadsCount: 'N° hilos soportados:',
 	messageType: 'TIPO DE MENSAJERIA',
-	identificadorMensaje: 'Identificador de mensaje : ',
-	descripcionMensaje: 'Descripcion de mensaje : ',
-	supportedMessageFormats: 'TIPO DE FORMATOS SOPORTADOS'
+	messageTypeId: 'Id. mensaje:',
+	messageTypeDesc: 'Descripcion:',
+	supportedMessageFormats: 'FORMATOS SOPORTADOS',
+	//Tabla de formatos
+	messageFormatIdTbl: 'Identificador',
+	opcionActionTbl: 'Accion',
+	//Descripcion de los titulo de la tabla de colas
+	adminQueueIdTbl: 'Identificador',
+	workerThreadsCountTbl: 'N° hilos',
+	messageTypeTbl: 'Formato'
 })
 .constant('driverTexto', {
 	titulo: 'CONFIGURADOR DE DRIVERS',
@@ -54,6 +69,7 @@ angular.module('app.textos', [])
 	outFilters: 'Filtros de salidas : '
 })
 .constant('botonTexto', {
+	//Botonde de mantenimiento generañ
 	grabar: 'GRABAR',
 	agregar: 'AGREGAR',
 	quitar: 'QUITAR',
@@ -62,6 +78,7 @@ angular.module('app.textos', [])
 	mas: '+',
 	menos: '-',
 
+	//Indice de menu general
 	formateador: 'Formateador',
 	cola: 'Cola',
 	driver: 'Driver',
@@ -72,5 +89,13 @@ angular.module('app.textos', [])
 	perfil: 'Perfil'
 })
 .constant('queryRuta', {
-	urlMessageFormat: 'http://localhost:8080/ResDAS/MessageFormat'
+	//Atributos generales para todos los tag
+	classRoutersManager: 'com.novatronic.sixadc.manager.RoutersManager',
+	classDriversManager: 'com.novatronic.sixadc.manager.DriversManager',
+	classBalancersManager: 'com.novatronic.sixadc.manager.BalancersManager',
+	classChannelManager: 'com.novatronic.sixadc.manager.ChannelManager',
+	ipPuerto: 'localhost:1099',
+	//Ruta de los servicio expuesto, genenal
+	urlMessageFormat: 'http://localhost:8080/ResDAS/MessageFormat',
+	urlAdminQueue: 'http://localhost:8080/ResDAS/AdminQueue'
 });

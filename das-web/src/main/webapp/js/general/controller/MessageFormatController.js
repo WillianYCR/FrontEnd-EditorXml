@@ -98,7 +98,7 @@ angular.module('app.controllers')
 			
 			//Botones de proceso
 			$scope.nuevo = function(){
-				stateNew = true;
+				limpiarCampos();
 				closeAlert();
 			};
 
@@ -145,19 +145,21 @@ angular.module('app.controllers')
 				console.log("Valor hideAlert: ", $scope.hideAlert);
 			}
 
-
+			function limpiarCampos(){
+				stateNew = true;
+				$scope.selectMessageFormat.messageFormatId = "";
+				$scope.selectMessageFormat.messageFormatDesc = "";
+				$scope.selectMessageFormat.transformerConfigFile = "";
+				$scope.selectMessageFormat.routerConfigFile = "";
+				$scope.selectMessageFormat.transformerStruct = "";
+			}
 
 			//Botones de la tabla
-			$scope.editar = function(valId){
-				console.log("Inicio de disponibilidad para editar...:", valId);
+			$scope.editar = function(valRow){
+				console.log("Inicio de disponibilidad para editar...:", valRow);
 				closeAlert();
 				stateNew = false;
-				angular.forEach($scope.listMessageFormat, function(value, key){
-				    if(value.messageFormatId == valId){
-				    	console.log("Cargando los datos a editar...:", value);
-				      	$scope.selectMessageFormat = value;
-				    }
-				});
+				$scope.selectMessageFormat = angular.copy(valRow);
 			};
 			
 			$scope.quitar = function(valId){
@@ -167,6 +169,7 @@ angular.module('app.controllers')
 				if(estado){
 					console.log("Enviando eliminacion de registro...");
 					deleteData(valId);
+					limpiarCampos();
 				}
 			};
 		}

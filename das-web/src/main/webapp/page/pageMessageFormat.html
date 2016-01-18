@@ -46,14 +46,14 @@
 			      	</tr>
 			    </thead>
 			    <tbody>
-			      	<tr class="success" ng-repeat="valueRow in listMessageFormat" ng-model="changeFila">
+			      	<tr class="success" ng-repeat="valueRow in listMessageFormat">
 				        <td>{{valueRow.messageFormatId}}</td>
 				        <td>{{valueRow.messageFormatDesc | uppercase}}</td>
 				        <td>{{valueRow.transformerConfigFile}}</td>
 				        <td>{{valueRow.routerConfigFile}}</td>
 				        <td >
 				        	<button class="btn btn-success btn-xs glyphicon glyphicon-pencil" 
-				        			ng-click="editar(valueRow.messageFormatId)"></button>
+				        			ng-click="editar(valueRow)"></button>
 				        	<button class="btn btn-danger btn-xs glyphicon glyphicon-trash" 
 				        			ng-click="quitar(valueRow.messageFormatId)"></button>
 				        </td>
