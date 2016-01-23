@@ -119,7 +119,7 @@ angular.module('app.textos', [])
 	//Descripcion de las controles individuales
 	titulo: 'CONFIGURADOR DE SERVICIOS',
 	//******Descripcion de los Tag
-	serviceId: 'Identificado:',
+	serviceId: 'Identificador:',
 	serviceDesc: 'Descripcion:',
 	discriminationRules: 'Reglas:',
 	authorizationBins: 'Autorizador:',
@@ -131,6 +131,60 @@ angular.module('app.textos', [])
 	serviceDescTbl: 'Descripcion',
 	discriminationRulesTbl: 'Reglas',
 	authorizationBinsTbl: 'Autorizador',
+	opcionActionTbl: 'Accion'
+})
+.constant('serviceNodeTexto', {
+	//Descripcion de las controles individuales
+	titulo: 'CONFIGURADOR DE NODOS DE SERVICIOS',
+	//******Descripcion de los Tag
+	serviceNodeId: 'Identificador:',
+	ipAddress: 'IP del nodo:',
+	binMonitorPause: 'Bin Monitor:',
+
+	adminChannel: 'ADMINISTRADOR DE CANALES',
+	defaultChannel: 'CANALES POR DEFECTO',
+	serviceChannels: 'Servicio de canales',
+	
+	adminChannelId: 'Codigo Adm.:',
+	adminChannelPort: 'Puerto Adm.:',
+	adminChannelStatus: 'Estado Adm.:',
+
+	defaultChannelId: 'Codigo Default:',
+	defaultChannelPort: 'Puerto Default:',
+	defaultChannelStatus: 'Estado Defeault:',
+	workerThreadsCount: 'N° Hilos:',
+	useCorrelationID: 'ID Correlativo:',
+
+	serviceChannelId: 'Routes:',
+	serviceChannelStatus: 'Routes:',
+	serviceChannelPort: 'Routes:',
+
+	authorizedServices: 'Servicios autorizados:',
+
+	
+	connectTimeOut: 'T. Conexion:',
+	readTimeOut: 'T. Lectura:',
+	timeOutQueueRead: 'T. Colas',
+	poolSize: 'N °Pool:',
+	sleepTime: 'T. Espera:',
+	refreshTime: 'T. Actualizacion:',
+	maxReconnect: 'Max. Conexion:',
+	reconnectPause: 'Pausa Reconexion:',
+
+	timeoutReceive: 'T. Recepcion:',
+	lagTimeReceive: 'T. Max. Recep:',
+	timeoutSend: 'T. Envio:',
+	lagTimeSend: 'T. Max. Envio:',
+	umbralWarning: 'Advertencia:',
+	umbralReconnect: 'Reconexion:',
+
+	//Tabla de balanceadores
+	serviceNodeIdTbl: 'Codigo',
+	ipAddressTbl: 'IP',
+	binMonitorPauseTbl: 'Monitor',
+
+	adminChannelTbl: 'Administrador',
+	defaultChannelTbl: 'Default',
 	opcionActionTbl: 'Accion'
 })
 .constant('botonTexto', {
@@ -157,5 +211,6 @@ angular.module('app.textos', [])
 	urlBalancer: 'http://localhost:8080/ResDAS/Balancer',
 	urlRoute: 'http://localhost:8080/ResDAS/Route',
 	urlDriver: 'http://localhost:8080/ResDAS/Driver',
-	urlService: 'http://localhost:8080/ResDAS/Service'
+	urlService: 'http://localhost:8080/ResDAS/Service',
+	urlServiceNode: 'http://localhost:8080/ResDAS/ServiceNode'
 });

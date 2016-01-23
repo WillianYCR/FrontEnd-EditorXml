@@ -30,7 +30,7 @@ angular.module('app.controllers')
 		$state.go('service');
 	};
 	$scope.viewNodo = function(){
-		$state.go('login');
+		$state.go('serviceNode');
 	};
 	$scope.viewPerfil = function(){
 		$state.go('login');

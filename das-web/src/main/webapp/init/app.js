@@ -48,5 +48,10 @@ angular.module('app', ['ui.router','app.controllers','app.directives','app.texto
 		url : '/service',
 		templateUrl : '../page/pageService.html',
 		controller : 'serviceController'
+	})
+	.state('serviceNode', {
+		url : '/serviceNode',
+		templateUrl : '../page/pageServiceNode.html',
+		controller : 'serviceNodeController'
 	});
 }]);

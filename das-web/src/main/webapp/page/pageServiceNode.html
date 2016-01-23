@@ -1,0 +1,476 @@
+<div class="container">
+	<div>
+		<form class="form-group" name="formulario">
+			<h4>{{serviceNodeTexto.titulo}}</h4>
+			<div class="panel panel-default" style="width: 700px">
+				<div class="panel-body">
+
+					<div class="row" style="width:700px">
+						
+						<div class="col-md-4">
+							<span  class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.serviceNodeId.$error.required">*</span>
+							<label>{{serviceNodeTexto.serviceNodeId}}</label> 
+							<input type="text" style="width: 150px" name="serviceNodeId" 
+									class="form-control"  placeholder="Codigo ..."
+									ng-model="selectServiceNode.serviceNodeId" required>
+						</div>
+
+						<div class="col-md-4">
+							<span  class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.ipAddress.$error.required">*</span>
+							<label>{{serviceNodeTexto.ipAddress}}</label>
+							<input type="text" style="width: 150px" name="ipAddress" 
+									class="form-control" 
+									ng-model="selectServiceNode.ipAddress" required>
+						</div>
+
+						<div class="col-md-4">
+							<span  class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.binMonitorPause.$error.required">*</span>
+							<label>{{serviceNodeTexto.binMonitorPause}}</label>
+							<input type="text" style="width: 150px" name="binMonitorPause" 
+									class="form-control" 
+									ng-model="selectServiceNode.binMonitorPause" required>
+						</div>
+
+					</div>
+
+					<hr width="100%" size="14"/>
+
+					<label style="width:700px" align="center">{{serviceNodeTexto.adminChannel}}</label>
+
+					<div class="row" style="width:700px">
+						
+						<div class="col-md-3">
+							<span  class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.connectTimeOut.$error.required">*</span>
+							<label>{{serviceNodeTexto.connectTimeOut}}</label> 
+							<input type="text" style="width: 150px" name="connectTimeOut" 
+									class="form-control"
+									ng-model="selectServiceNode.adminChannel.connectTimeOut" required>
+						</div>
+
+						<div class="col-md-3">
+							<span  class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.readTimeOut.$error.required">*</span>
+							<label>{{serviceNodeTexto.readTimeOut}}</label>
+							<input type="text" style="width: 150px" name="readTimeOut" 
+									class="form-control" 
+									ng-model="selectServiceNode.adminChannel.readTimeOut" required>
+						</div>
+
+						<div class="col-md-3">
+							<span  class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.timeOutQueueRead.$error.required">*</span>
+							<label>{{serviceNodeTexto.timeOutQueueRead}}</label>
+							<input type="text" style="width: 150px" name="timeOutQueueRead" 
+									class="form-control" 
+									ng-model="selectServiceNode.adminChannel.timeOutQueueRead" required>
+						</div>
+
+						<div class="col-md-3">
+							<span  class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.poolSize.$error.required">*</span>
+							<label>{{serviceNodeTexto.poolSize}}</label>
+							<input type="text" style="width: 150px" name="poolSize" 
+									class="form-control" 
+									ng-model="selectServiceNode.adminChannel.poolSize" required>
+						</div>
+
+					</div>
+
+					<div class="row" style="width:700px">
+						
+						<div class="col-md-3">
+							<span  class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.sleepTime.$error.required">*</span>
+							<label>{{serviceNodeTexto.sleepTime}}</label> 
+							<input type="text" style="width: 150px" name="sleepTime" 
+									class="form-control" 
+									ng-model="selectServiceNode.adminChannel.sleepTime" required>
+						</div>
+
+						<div class="col-md-3">
+							<span  class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.refreshTime.$error.required">*</span>
+							<label>{{serviceNodeTexto.refreshTime}}</label>
+							<input type="text" style="width: 150px" name="refreshTime" 
+									class="form-control" 
+									ng-model="selectServiceNode.adminChannel.refreshTime" required>
+						</div>
+
+						<div class="col-md-3">
+							<span  class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.maxReconnect.$error.required">*</span>
+							<label>{{serviceNodeTexto.maxReconnect}}</label>
+							<input type="text" style="width: 150px" name="maxReconnect" 
+									class="form-control" 
+									ng-model="selectServiceNode.adminChannel.maxReconnect" required>
+						</div>
+
+						<div class="col-md-3">
+							<span  class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.reconnectPause.$error.required">*</span>
+							<label>{{serviceNodeTexto.reconnectPause}}</label>
+							<input type="text" style="width: 150px" name="reconnectPause" 
+									class="form-control" 
+									ng-model="selectServiceNode.adminChannel.reconnectPause" required>
+						</div>
+
+					</div>
+
+					<div class="row" style="width:700px">
+						
+						<div class="col-md-6">
+							<span  class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.adminChannelId.$error.required">*</span>
+							<label>{{serviceNodeTexto.adminChannelId}}</label> 
+							<input type="text" style="width: 325px" name="adminChannelId" 
+									class="form-control" 
+									ng-model="selectServiceNode.adminChannel.adminChannelId" required>
+						</div>
+
+						<div class="col-md-3">
+							<span  class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.adminChannelPort.$error.required">*</span>
+							<label>{{serviceNodeTexto.adminChannelPort}}</label>
+							<input type="text" style="width: 150px" name="adminChannelPort" 
+									class="form-control" 
+									ng-model="selectServiceNode.adminChannel.adminChannelPort" required>
+						</div>
+
+						<div class="col-md-3">
+							<span  class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.adminChannelStatus.$error.required">*</span>
+							<label>{{serviceNodeTexto.adminChannelStatus}}</label>
+							<input type="text" style="width: 150px" name="adminChannelStatus" 
+									class="form-control" 
+									ng-model="selectServiceNode.adminChannel.adminChannelStatus" required>
+						</div>
+
+					</div>
+
+					<div class="row" style="width:700px">
+						
+						<div class="col-md-3">
+							<span  class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.timeoutReceive.$error.required">*</span>
+							<label>{{serviceNodeTexto.timeoutReceive}}</label> 
+							<input type="text" style="width: 150px" name="timeoutReceive" 
+									class="form-control" 
+									ng-model="selectServiceNode.adminChannel.timeoutReceive" required>
+						</div>
+
+						<div class="col-md-3">
+							<span  class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.lagTimeReceive.$error.required">*</span>
+							<label>{{serviceNodeTexto.lagTimeReceive}}</label>
+							<input type="text" style="width: 150px" name="lagTimeReceive" 
+									class="form-control" 
+									ng-model="selectServiceNode.adminChannel.lagTimeReceive" required>
+						</div>
+
+						<div class="col-md-3">
+							<span  class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.timeoutSend.$error.required">*</span>
+							<label>{{serviceNodeTexto.timeoutSend}}</label>
+							<input type="text" style="width: 150px" name="timeoutSend" 
+									class="form-control" 
+									ng-model="selectServiceNode.adminChannel.timeoutSend" required>
+						</div>
+
+						<div class="col-md-3">
+							<span  class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.lagTimeSend.$error.required">*</span>
+							<label>{{serviceNodeTexto.lagTimeSend}}</label>
+							<input type="text" style="width: 150px" name="lagTimeSend" 
+									class="form-control" 
+									ng-model="selectServiceNode.adminChannel.lagTimeSend" required>
+						</div>
+
+					</div>
+
+					<hr width="100%" size="14"/>
+
+					<label style="width:700px" align="center">{{serviceNodeTexto.defaultChannel}}</label>
+
+					<div class="row" style="width:700px">
+						
+						<div class="col-md-3">
+							<span  class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.connectTimeOut.$error.required">*</span>
+							<label>{{serviceNodeTexto.connectTimeOut}}</label> 
+							<input type="text" style="width: 150px" name="connectTimeOut" 
+									class="form-control"
+									ng-model="selectServiceNode.defaultChannel.connectTimeOut" required>
+						</div>
+
+						<div class="col-md-3">
+							<span  class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.readTimeOut.$error.required">*</span>
+							<label>{{serviceNodeTexto.readTimeOut}}</label>
+							<input type="text" style="width: 150px" name="readTimeOut" 
+									class="form-control" 
+									ng-model="selectServiceNode.defaultChannel.readTimeOut" required>
+						</div>
+
+						<div class="col-md-3">
+							<span  class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.timeOutQueueRead.$error.required">*</span>
+							<label>{{serviceNodeTexto.timeOutQueueRead}}</label>
+							<input type="text" style="width: 150px" name="timeOutQueueRead" 
+									class="form-control" 
+									ng-model="selectServiceNode.defaultChannel.timeOutQueueRead" required>
+						</div>
+
+						<div class="col-md-3">
+							<span  class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.poolSize.$error.required">*</span>
+							<label>{{serviceNodeTexto.poolSize}}</label>
+							<input type="text" style="width: 150px" name="poolSize" 
+									class="form-control" 
+									ng-model="selectServiceNode.defaultChannel.poolSize" required>
+						</div>
+
+					</div>
+
+					<div class="row" style="width:700px">
+						
+						<div class="col-md-3">
+							<span  class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.sleepTime.$error.required">*</span>
+							<label>{{serviceNodeTexto.sleepTime}}</label> 
+							<input type="text" style="width: 150px" name="sleepTime" 
+									class="form-control" 
+									ng-model="selectServiceNode.defaultChannel.sleepTime" required>
+						</div>
+
+						<div class="col-md-3">
+							<span  class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.refreshTime.$error.required">*</span>
+							<label>{{serviceNodeTexto.refreshTime}}</label>
+							<input type="text" style="width: 150px" name="refreshTime" 
+									class="form-control" 
+									ng-model="selectServiceNode.defaultChannel.refreshTime" required>
+						</div>
+
+						<div class="col-md-3">
+							<span  class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.maxReconnect.$error.required">*</span>
+							<label>{{serviceNodeTexto.maxReconnect}}</label>
+							<input type="text" style="width: 150px" name="maxReconnect" 
+									class="form-control" 
+									ng-model="selectServiceNode.defaultChannel.maxReconnect" required>
+						</div>
+
+						<div class="col-md-3">
+							<span  class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.reconnectPause.$error.required">*</span>
+							<label>{{serviceNodeTexto.reconnectPause}}</label>
+							<input type="text" style="width: 150px" name="reconnectPause" 
+									class="form-control" 
+									ng-model="selectServiceNode.defaultChannel.reconnectPause" required>
+						</div>
+
+					</div>
+
+					<div class="row" style="width:700px">
+						
+						<div class="col-md-3">
+							<span  class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.defaultChannelId.$error.required">*</span>
+							<label>{{serviceNodeTexto.defaultChannelId}}</label> 
+							<input type="text" style="width: 150px" name="defaultChannelId" 
+									class="form-control" 
+									ng-model="selectServiceNode.defaultChannel.defaultChannelId" required>
+						</div>
+
+						<div class="col-md-3">
+							<span  class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.defaultChannelPort.$error.required">*</span>
+							<label>{{serviceNodeTexto.defaultChannelPort}}</label>
+							<input type="text" style="width: 150px" name="defaultChannelPort" 
+									class="form-control" 
+									ng-model="selectServiceNode.defaultChannel.defaultChannelPort" required>
+						</div>
+
+						<div class="col-md-3">
+							<span  class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.defaultChannelStatus.$error.required">*</span>
+							<label>{{serviceNodeTexto.defaultChannelStatus}}</label>
+							<input type="text" style="width: 150px" name="defaultChannelStatus" 
+									class="form-control" 
+									ng-model="selectServiceNode.defaultChannel.defaultChannelStatus" required>
+						</div>
+
+						<div class="col-md-3">
+							<span  class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.useCorrelationID.$error.required">*</span>
+							<label>{{serviceNodeTexto.useCorrelationID}}</label>
+							<input type="text" style="width: 150px" name="useCorrelationID" 
+									class="form-control" 
+									ng-model="selectServiceNode.defaultChannel.useCorrelationID" required>
+						</div>
+
+					</div>
+
+					<div class="row" style="width:700px">
+
+						<div class="col-md-3">
+							<span  class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.timeoutReceive.$error.required">*</span>
+							<label>{{serviceNodeTexto.timeoutReceive}}</label> 
+							<input type="text" style="width: 150px" name="timeoutReceive" 
+									class="form-control" 
+									ng-model="selectServiceNode.defaultChannel.timeoutReceive" required>
+						</div>
+
+						<div class="col-md-3">
+							<span  class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.lagTimeReceive.$error.required">*</span>
+							<label>{{serviceNodeTexto.lagTimeReceive}}</label>
+							<input type="text" style="width: 150px" name="lagTimeReceive" 
+									class="form-control" 
+									ng-model="selectServiceNode.defaultChannel.lagTimeReceive" required>
+						</div>
+
+						<div class="col-md-3">
+							<span  class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.timeoutSend.$error.required">*</span>
+							<label>{{serviceNodeTexto.timeoutSend}}</label>
+							<input type="text" style="width: 150px" name="timeoutSend" 
+									class="form-control" 
+									ng-model="selectServiceNode.defaultChannel.timeoutSend" required>
+						</div>
+
+						<div class="col-md-3">
+							<span  class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.lagTimeSend.$error.required">*</span>
+							<label>{{serviceNodeTexto.lagTimeSend}}</label>
+							<input type="text" style="width: 150px" name="lagTimeSend" 
+									class="form-control" 
+									ng-model="selectServiceNode.defaultChannel.lagTimeSend" required>
+						</div>
+
+					</div>
+
+					<div class="row" style="width:700px">
+
+						<div class="col-md-3">
+							<span  class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.workerThreadsCount.$error.required">*</span>
+							<label>{{serviceNodeTexto.workerThreadsCount}}</label> 
+							<input type="text" style="width: 150px" name="workerThreadsCount" 
+									class="form-control" 
+									ng-model="selectServiceNode.defaultChannel.workerThreadsCount" required>
+						</div>
+
+						<div class="col-md-3">
+							<span  class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.umbralWarning.$error.required">*</span>
+							<label>{{serviceNodeTexto.umbralWarning}}</label>
+							<input type="text" style="width: 150px" name="umbralWarning" 
+									class="form-control" 
+									ng-model="selectServiceNode.defaultChannel.umbralWarning" required>
+						</div>
+
+						<div class="col-md-3">
+							<span  class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.umbralReconnect.$error.required">*</span>
+							<label>{{serviceNodeTexto.umbralReconnect}}</label>
+							<input type="text" style="width: 150px" name="umbralReconnect" 
+									class="form-control" 
+									ng-model="selectServiceNode.defaultChannel.umbralReconnect" required>
+						</div>
+
+						<div class="col-md-3"></div>
+
+					</div>
+
+					<br />
+					
+					<button class="btn btn-primary glyphicon glyphicon-file" ng-click="nuevo()">
+					</button>
+					<button class="btn btn-primary glyphicon glyphicon-floppy-disk" 
+							ng-click="grabar(selectServiceNode)" ng-disabled="!formulario.$valid">
+					</button>
+					<button class="btn btn-primary glyphicon glyphicon-refresh" ng-click="refrescar()">
+					</button>
+				</div>
+			</div>
+			<div class="row" ng-hide="hideAlert">
+				<div class="col-md-5">
+					<div class="alert alert-{{responseRestTag}}">
+					  <strong>Respuesta :</strong> {{responseRest}}
+					</div>
+				</div>
+			</div>
+
+			<table class="table" cellspacing="0" style="width: 700px">
+			    <thead>
+			     	<tr>
+				        <th style="width: 150px">{{serviceNodeTexto.serviceNodeIdTbl}}</th>
+				        <th style="width: 150px">{{serviceNodeTexto.ipAddressTbl}}</th>
+				        <th style="width: 100px">{{serviceNodeTexto.binMonitorPauseTbl}}</th>
+				        <th style="width: 100px">{{serviceNodeTexto.adminChannelTbl}}</th>
+				        <th style="width: 100px">{{serviceNodeTexto.defaultChannelTbl}}</th>
+				        <th style="width: 100px">{{serviceNodeTexto.opcionActionTbl}}</th>
+			      	</tr>
+			    </thead>
+			    <tbody>
+			      	<tr class="success" ng-repeat="valueRow in serviceNodeGeneral">
+				        <td>{{valueRow.serviceNodeId}}</td>
+				        <td>{{valueRow.ipAddress}}</td>
+				        <td>{{valueRow.binMonitorPause}}</td>
+				        <td>{{valueRow.adminChannelId}}</td>
+				        <td>{{valueRow.defaultChannelId}}</td>
+				        <td >
+				        	<button class="btn btn-success btn-xs glyphicon glyphicon-pencil" 
+				        			ng-click="editar(valueRow)"></button>
+				        	<button class="btn btn-danger btn-xs glyphicon glyphicon-trash" 
+				        			ng-click="quitar(valueRow.serviceNodeId)"></button>
+				        </td>
+			      	</tr>
+			    </tbody>
+			</table>
+		</form>
+	</div>
+</div>
