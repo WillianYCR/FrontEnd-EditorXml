@@ -1,71 +1,94 @@
-<div class="container">
+<div class="container" name="formulario"
 	<div>
-		<form class="form-group">
+		<form class="form-group" name="formulario">
 			<h4>{{queueTxt.titulo}}</h4>
-			<div class="panel panel-default" style="width: 650px">
+			<div class="panel panel-default" style="width: 700px">
 				<div class="panel-body">
-					<div class="row" style="width:500px">
-						<div class="col-md-6">
+					
+					<div class="row" style="width:700px">
+						
+						<div class="col-md-4">
 							<label>{{queueTxt.queueLocation}}</label> 
-							<input type="text" id="queueLocation" class="form-control"
-								style="width: 200px" ng-model="adminQueueGeneral.queueLocation" disabled> 
+							<input type="text" style="width: 150px" id="queueLocation" 
+									class="form-control" 
+								 	ng-model="adminQueueGeneral.queueLocation" disabled> 
 						</div>
-						<div class="col-md-3">
+
+						<div class="col-md-4">
 							<label>{{queueTxt.sleepTime}}</label> 
-							<input type="text" id="sleepTime" class="form-control"
-								style="width: 100px" ng-model="adminQueueGeneral.sleepTime" disabled> 
+							<input type="text" style="width: 150px" id="sleepTime" 
+									class="form-control"
+								 	ng-model="adminQueueGeneral.sleepTime" disabled> 
 						</div>
-						<div class="col-md-3">
+
+						<div class="col-md-4">
 							<label>{{queueTxt.refreshTime}}</label>
-							<input type="text" id="refreshTime" class="form-control"
-								style="width: 100px" ng-model="adminQueueGeneral.refreshTime" disabled> 
+							<input type="text" style="width: 150px" id="refreshTime" 
+									class="form-control"
+								 	ng-model="adminQueueGeneral.refreshTime" disabled> 
 						</div>
-					</div>
-					<hr width="100%" size="14"/>
 
-					<div class="row" style="width:500px">
-						<div class="col-md-4">
-							<label>{{queueTxt.adminQueueId}}</label> 
-							<input type="text" id="adminQueueId" class="form-control"
-								style="width: 150px" ng-model="selectQueue.adminQueueId" required autofocus> 
-						</div>
-						<div class="col-md-8">
-							<label>{{queueTxt.workerThreadsCount}}</label>
-							<input type="text" id="workerThreadsCount" class="form-control"
-								style="width: 300px" ng-model="selectQueue.workerThreadsCount" required autofocus> 
-						</div>
 					</div>
-					<br/>
 
-					<label>{{queueTxt.messageType}}</label><br />
-					<div class="row" style="width:500px">
-						<div class="col-md-4">
-							<label>{{queueTxt.messageTypeId}}</label>
-							<input type="text" id="messageTypeId" class="form-control" style="width: 150px" ng-model="selectQueue.messageType.messageTypeId" required autofocus> 		
-						</div>
-						<div class="col-md-8">
-							<label>{{queueTxt.messageTypeDesc}}</label>
-							<input type="text" id="messageTypeDesc" class="form-control" style="width: 300px" ng-model="selectQueue.messageType.messageTypeDesc" required autofocus>		
-						</div>
-					</div>
-					<br/>
+					<hr width="100%" size="10"/>
+
+					<span  class="glyphicon" style="color: red;"	
+							ng-show="!formulario.$pristine && 
+							formulario.adminQueueId.$error.required">*</span>
+					<label>{{queueTxt.adminQueueId}}</label> 
+					<input type="text" style="width: 150px" name="adminQueueId" 
+							class="form-control" placeholder="Codigo ..."
+						 	ng-model="selectQueue.adminQueueId" required> 
+				
+					<span  class="glyphicon" style="color: red;"	
+							ng-show="!formulario.$pristine && 
+							formulario.workerThreadsCount.$error.required">*</span>
+					<label>{{queueTxt.workerThreadsCount}}</label>
+					<input type="text" style="width: 300px" name="workerThreadsCount" 
+							class="form-control"
+						 	ng-model="selectQueue.workerThreadsCount" required> 
+					
+					<span  class="glyphicon" style="color: red;"	
+							ng-show="!formulario.$pristine && 
+							formulario.messageTypeId.$error.required">*</span>
+					<label>{{queueTxt.messageTypeId}}</label>
+					<input type="text" style="width: 150px" name="messageTypeId" 
+							class="form-control"  
+							ng-model="selectQueue.messageType.messageTypeId" required> 
+
+					<span  class="glyphicon" style="color: red;"	
+							ng-show="!formulario.$pristine && 
+							formulario.messageTypeDesc.$error.required">*</span>		
+					<label>{{queueTxt.messageTypeDesc}}</label>
+					<input type="text" style="width: 300px" name="messageTypeDesc" 
+							class="form-control"  
+							ng-model="selectQueue.messageType.messageTypeDesc" required>
+					
+					<hr width="100%" size="10"/>
 
 					<!--Lista de los formatos soportados para las colas-->
-	                <label>{{queueTxt.supportedMessageFormats}}</label><br />
-	                <label ng-repeat="myMessage in listMessageFormat" ng-model="selectQueue.messageType.supportedMessageFormats.messageFormatId" style="width: 100px">
-					  <input 
-					    type="checkbox"
-					    name="message"
-					    value="{{myMessage.messageFormatId}}"
-					    ng-checked="selectionMessage.indexOf(myMessage.messageFormatId) > -1"
-					    ng-click="getSelectionMessage(myMessage.messageFormatId)"> 
-					    {{myMessage.messageFormatId}}
-					</label>
+	                <label>{{queueTxt.supportedMessageFormats}}</label>
+	                <div class="checkbox" style="width: 700px">
+	                	<label ng-repeat="myMessage in listMessageFormat" style="width: 100px"
+	                			ng-model="selectQueue.messageType.supportedMessageFormats.messageFormatId" >
+					  	<input 
+						    type="checkbox"
+						    name="message"
+						    value="{{myMessage.messageFormatId}}"
+						    ng-checked="selectionMessage.indexOf(myMessage.messageFormatId) > -1"
+						    ng-click="getSelectionMessage(myMessage.messageFormatId)"> {{myMessage.messageFormatId}}
+						</label>
+	                </div>
+	                
 					<hr width="100%" size="14"/>
 
-					<button class="btn btn-primary glyphicon glyphicon-file" ng-click="nuevo()"></button>
-					<button class="btn btn-primary glyphicon glyphicon-floppy-disk" ng-click="grabar(selectQueue)"></button>
-					<button class="btn btn-primary glyphicon glyphicon-refresh" ng-click="refrescar()"></button>
+					<button class="btn btn-primary glyphicon glyphicon-file" ng-click="nuevo()">
+					</button>
+					<button class="btn btn-primary glyphicon glyphicon-floppy-disk" 
+							ng-click="grabar(selectQueue)" ng-disabled="!formulario.$valid">
+					</button>
+					<button class="btn btn-primary glyphicon glyphicon-refresh" ng-click="refrescar()">
+					</button>
 				</div>
 			</div>
 

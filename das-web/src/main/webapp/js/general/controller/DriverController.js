@@ -187,6 +187,9 @@ angular.module('app.controllers')
 
 			$scope.grabar = function(dataSave){
 				console.log("Inicio de evento grabar...:" , dataSave);
+				$scope.selectDriver.filters.inFilters.inFilter = $scope.selectionInFilter;
+				$scope.selectDriver.filters.outFilters.outFilter = $scope.selectionOutFilter;
+				console.log("Inicio de evento grabar cargado lista...:" , dataSave);
 				var existId = false;
 				angular.forEach($scope.driverGeneral.drivers, function(value, key){
 				    if(value.driverId == dataSave.driverId){

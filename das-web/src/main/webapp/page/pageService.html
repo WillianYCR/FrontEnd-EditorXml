@@ -1,0 +1,104 @@
+<div class="container" name="formulario"
+	<div>
+		<form class="form-group" name="formulario">
+			<h4>{{serviceTexto.titulo}}</h4>
+			<div class="panel panel-default" style="width: 600px">
+				<div class="panel-body">
+					
+					<span  class="glyphicon" style="color: red;"	
+							ng-show="!formulario.$pristine && 
+							formulario.serviceId.$error.required">*</span>
+					<label>{{serviceTexto.serviceId}}</label> 
+					<input type="text" style="width: 150px" name="serviceId" 
+							class="form-control" placeholder="Codigo ..."
+						 	ng-model="selectService.serviceId" required> 
+				
+					<span  class="glyphicon" style="color: red;"	
+							ng-show="!formulario.$pristine && 
+							formulario.serviceDesc.$error.required">*</span>
+					<label>{{serviceTexto.serviceDesc}}</label>
+					<input type="text" style="width: 300px" name="serviceDesc" 
+							class="form-control"
+						 	ng-model="selectService.serviceDesc" required> 
+					
+					<label>{{serviceTexto.discriminationRules}}</label>
+					<input type="text" style="width: 150px" name="discriminationRules" 
+							class="form-control"  
+							ng-model="selectService.discriminationRules"> 
+
+					<hr width="100%" size="10"/>
+<!--Pendiente
+	                <label>{{serviceTexto.routes}}</label>
+	                <div class="checkbox" style="width: 600px">
+	                	<label ng-repeat="myRoute in listRoute" style="width: 200px"
+	                			ng-model="selectService.routes.routeId" >
+					  	<input 
+						    type="checkbox"
+						    name="route"
+						    value="{{myRoute.routeId}}"
+						    ng-checked="selectionRoute.indexOf(myRoute.routeId) > -1"
+						    ng-click="getselectionRoute(myRoute.routeId)"> {{myRoute.routeId}}
+						</label>
+	                </div>
+-->			
+					<hr width="100%" size="10"/>
+
+	                <label>{{serviceTexto.routes}}</label>
+	                <div class="checkbox" style="width: 600px">
+	                	<label ng-repeat="myRoute in listRoute" style="width: 200px"
+	                			ng-model="selectService.routes.routeId" >
+					  	<input 
+						    type="checkbox"
+						    name="route"
+						    value="{{myRoute.routeId}}"
+						    ng-checked="selectionRoute.indexOf(myRoute.routeId) > -1"
+						    ng-click="getSelectionRoute(myRoute.routeId)"> {{myRoute.routeId}}
+						</label>
+	                </div>
+	                
+					<hr width="100%" size="14"/>
+
+					<button class="btn btn-primary glyphicon glyphicon-file" ng-click="nuevo()">
+					</button>
+					<button class="btn btn-primary glyphicon glyphicon-floppy-disk" 
+							ng-click="grabar(selectService)" ng-disabled="!formulario.$valid">
+					</button>
+					<button class="btn btn-primary glyphicon glyphicon-refresh" ng-click="refrescar()">
+					</button>
+				</div>
+			</div>
+
+			<div class="row" ng-hide="hideAlert">
+				<div class="col-md-7">
+					<div class="alert alert-{{responseRestTag}}">
+					  <strong>Respuesta :</strong> {{responseRest}}
+					</div>
+				</div>
+			</div>
+
+			<table class="table" cellspacing="0" style="width: 600px">
+			    <thead>
+			     	<tr>
+				        <th style="width: 100px">{{serviceTexto.serviceIdTbl}}</th>
+				        <th style="width: 30px">{{serviceTexto.serviceDescTbl}}</th>
+				        <th style="width: 100px">{{serviceTexto.discriminationRulesTbl}}</th>
+				        <th style="width: 100px">{{serviceTexto.opcionActionTbl}}</th>
+			      	</tr>
+			    </thead>
+			    <tbody>
+			      	<tr class="success" ng-repeat="valueRow in serviceGeneral.services">
+				        <td>{{valueRow.serviceId}}</td>
+				        <td>{{valueRow.serviceDesc}}</td>
+				        <td>{{valueRow.discriminationRules}}</td>
+				        <td >
+				        	<button class="btn btn-success btn-xs glyphicon glyphicon-pencil" 
+				        			ng-click="editar(valueRow)"></button>
+				        	<button class="btn btn-danger btn-xs glyphicon glyphicon-trash" 
+				        			ng-click="quitar(valueRow.serviceId)"></button>
+				        </td>
+			      	</tr>
+			    </tbody>
+			</table>
+		</form>
+	</div>
+</div>

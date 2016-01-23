@@ -2,139 +2,210 @@
 	<div>
 		<form class="form-group" name="formulario">
 			<h4>{{driverTexto.titulo}}</h4>
-			<div class="panel panel-default" style="width: 800px">
+			<div class="panel panel-default" style="width: 700px">
 				<div class="panel-body">
-					<div class="row" style="width:780px">
-						<div class="col-md-3">
+				
+					<div class="row" style="width:700px">
+						
+						<div class="col-md-4">
+							<span class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.driverId.$error.required">*</span>
 							<label>{{driverTexto.driverId}}</label> 
-							<input type="text" name="driverId" class="form-control"
-								style="width: 180px" ng-model="selectDriver.driverId" required> 
+							<input type="text" style="width: 150px" name="driverId" 
+									class="form-control" placeholder="Codigo ..."
+								 	ng-model="selectDriver.driverId" required> 
 						</div>
-						<div class="col-md-3">
+
+						<div class="col-md-4">
+							<span class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.adminQueueId.$error.required">*</span>
 							<label>{{driverTexto.adminQueueId}}</label> 
-							<select class="form-control" style="width: 180px" name="colas" ng-model="selectDriver.adminQueueId">
-							    <option ng-repeat="myQueue in listAdminQueue" value="{{myQueue.adminQueueId}}">
+							<select class="form-control" style="width: 180px" name="adminQueueId" 			
+									ng-model="selectDriver.adminQueueId" required>
+							    <option ng-repeat="myQueue in listAdminQueue" 
+							    		value="{{myQueue.adminQueueId}}">
 							    	{{myQueue.adminQueueId}}
 							    </option>
 				            </select>
 						</div>
-						<div class="col-md-3">
+						<div class="col-md-4">
+							<span class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.type.$error.required">*</span>
 							<label>{{driverTexto.type}}</label>
-							<select class="form-control" style="width: 180px" name="type" ng-model="selectDriver.type" 
-									required autofocus>
+							<select class="form-control" style="width: 180px" name="type" 
+									ng-model="selectDriver.type" required>
 							    <option ng-repeat="myStatus in statusType" value="{{myStatus.type}}">
 							    	{{myStatus.type}}
 							    </option>
 				            </select>
 						</div>
-						<div class="col-md-3">
+						
+					</div>
+
+					<div class="row" style="width:700px">
+
+						<div class="col-md-4">
+							<span class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.timeOutConnect.$error.required">*</span>
 							<label>{{driverTexto.timeOutConnect}}</label>
-							<input type="text" name="timeOutConnect" class="form-control"
-								style="width: 180px" ng-model="selectDriver.timeOutConnect" required> 
+							<input type="text" style="width: 150px" name="timeOutConnect" 
+									class="form-control"
+								 	ng-model="selectDriver.timeOutConnect" required> 
 						</div>
-					</div>
-					<div class="row" style="width:780px">
-						<div class="col-md-3">
+
+						<div class="col-md-4">
+							<span class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.timeOutRead.$error.required">*</span>
 							<label>{{driverTexto.timeOutRead}}</label>
-							<input type="text" name="timeOutRead" class="form-control"
-								style="width: 180px" ng-model="selectDriver.timeOutRead" required autofocus> 
+							<input type="text" style="width: 150px" name="timeOutRead" 
+									class="form-control"
+								 	ng-model="selectDriver.timeOutRead" required> 
 						</div>
-						<div class="col-md-3">
+
+						<div class="col-md-4">
+							<span class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.retries.$error.required">*</span>
 							<label>{{driverTexto.retries}}</label>
-							<input type="text" name="retries" class="form-control"
-								style="width: 180px" ng-model="selectDriver.retries" required autofocus> 
+							<input type="text" style="width: 150px" name="retries" 
+									class="form-control"
+								 	ng-model="selectDriver.retries" required> 
 						</div>
-						<div class="col-md-3">
-							<label>{{driverTexto.timeOutQueueRead}}</label>
-							<input type="text" name="timeOutQueueRead" class="form-control"
-								style="width: 180px" ng-model="selectDriver.timeOutQueueRead" required autofocus> 
-						</div>
-						<div class="col-md-3"></div>
+
 					</div>
+
+					<div class="row" style="width:700px">
+
+						<div class="col-md-4">
+							<span class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.timeOutQueueRead.$error.required">*</span>
+							<label>{{driverTexto.timeOutQueueRead}}</label>
+							<input type="text" style="width: 150px" name="timeOutQueueRead" 
+									class="form-control"
+								 	ng-model="selectDriver.timeOutQueueRead" required> 
+						</div>
+						<div class="col-md-4"></div>
+						<div class="col-md-4"></div>
+
+					</div>
+
 					<hr width="100%" size="18"/>
 
-					<div class="row" style="width:780px">
-						<div class="col-md-3">
+					<div class="row" style="width:700px">
+
+						<div class="col-md-4">
+							<span class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.name.$error.required">*</span>
 							<label>{{driverTexto.name}}</label>
-							<input type="text" name="nameDriver" class="form-control"
-								style="width: 180px" ng-model="selectDriver.name" required autofocus> 
+							<input type="text" style="width: 200px" name="name" 
+									class="form-control"
+								 	ng-model="selectDriver.name" required> 
 						</div>
-						<div class="col-md-3">
+
+						<div class="col-md-4">
+							<span class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.port.$error.required">*</span>
 							<label>{{driverTexto.port}}</label>
-							<input type="text" name="port" class="form-control"
-								style="width: 180px" ng-model="selectDriver.port" required autofocus> 
+							<input type="text" style="width: 150px" name="port" 
+									class="form-control"
+								 	ng-model="selectDriver.port" required> 
 						</div>
-						<div class="col-md-3">
+
+						<div class="col-md-4">
+							<span class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.maxConcurrentConnections.$error.required">*</span>
 							<label>{{driverTexto.maxConcurrentConnections}}</label>
-							<input type="text" name="maxConcurrentConnections" class="form-control"
-								style="width: 180px" ng-model="selectDriver.maxConcurrentConnections" required autofocus> 
+							<input type="text" style="width: 180px" name="maxConcurrentConnections" 
+									class="form-control"
+								 	ng-model="selectDriver.maxConcurrentConnections" required> 
 						</div>
-						<div class="col-md-3"></div>
+
 					</div>
-					<div class="row" style="width:780px">
-						<div class="col-md-3">
+
+					<div class="row" style="width:700px">
+
+						<div class="col-md-4">
+							<span class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.forwardProcess.$error.required">*</span>
 							<label>{{driverTexto.forwardProcess}}</label>
-							<input type="text" name="forwardProcess" class="form-control"
-								style="width: 180px" ng-model="selectDriver.forwardProcess" required autofocus> 
+							<input type="text" style="width: 150px" name="forwardProcess" 
+									class="form-control"
+								 	ng-model="selectDriver.forwardProcess" required> 
 						</div>
-						<div class="col-md-3">
+
+						<div class="col-md-4">
+							<span class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.validaIp.$error.required">*</span>
 							<label>{{driverTexto.validaIp}}</label>
-							<select class="form-control" style="width: 180px" name="validaIp" ng-model="selectDriver.validaIp" 				required autofocus>
+							<select class="form-control" style="width: 180px" name="validaIp" 
+									ng-model="selectDriver.validaIp" required>
 							    <option ng-repeat="myStatus in statusValidarIp" value="{{myStatus.status}}">
 							    	{{myStatus.status}}
 							    </option>
 				            </select>
 						</div>
-						<div class="col-md-3">
+
+						<div class="col-md-4">
+							<span class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.concurrentUserSupport.$error.required">*</span>
 							<label>{{driverTexto.concurrentUserSupport}}</label>
 							<select class="form-control" style="width: 180px" name="concurrentUserSupport" 
-									ng-model="selectDriver.concurrentUserSupport" required autofocus>
+									ng-model="selectDriver.concurrentUserSupport" required>
 							    <option ng-repeat="myStatus in statusPermiso" value="{{myStatus.status}}">
 							    	{{myStatus.status}}
 							    </option>
 				            </select>
 						</div>
-						<div class="col-md-3"></div>
+
 					</div>
 					
-					<label>{{driverTexto.inFilters}}</label> <br />
-					<label ng-repeat="myInFilter in optionInFilter" ng-model="selectDriver.filters.inFilters.inFilter">
-					  <input 
-					    type="checkbox"
-					    name="inFilter"
-					    value="{{myInFilter}}"
-					    ng-checked="selectionInFilter.indexOf(myInFilter) > -1"
-					    ng-click="getSelectionInFilter(myInFilter)"
-					  > {{myInFilter}}
-					</label><br />
+					<hr width="100%" size="5"/>
 
-					<label>{{driverTexto.outFilters}}</label>	<br />
-					<label ng-repeat="myOutFilter in optionOutFilter" ng-model="selectDriver.filters.outFilters.outFilter">
-					  <input
-					    type="checkbox"
-					    name="outFilter"
-					    value="{{myOutFilter}}"
-					    ng-checked="selectionOutFilter.indexOf(myOutFilter) > -1"
-					    ng-click="getSelectionOutFilter(myOutFilter)"
-					  > {{myOutFilter}}
-					</label>
+					<label>{{driverTexto.inFilters}}</label> 
+					<div class="checkbox">
+						<label ng-repeat="myInFilter in optionInFilter" ng-model="selectDriver.filters.inFilters.inFilter">
+							<input 
+								type="checkbox"
+							    name="inFilter"
+							    value="{{myInFilter}}"
+							    ng-checked="selectionInFilter.indexOf(myInFilter) > -1"
+							    ng-click="getSelectionInFilter(myInFilter)"> {{myInFilter}}
+						</label>	
+					</div>
+					
+					<label>{{driverTexto.outFilters}}</label>
+					<div class="checkbox">
+						<label ng-repeat="myOutFilter in optionOutFilter" ng-model="selectDriver.filters.outFilters.outFilter">
+						  	<input
+							    type="checkbox"
+							    name="outFilter"
+							    value="{{myOutFilter}}"
+							    ng-checked="selectionOutFilter.indexOf(myOutFilter) > -1"
+							    ng-click="getSelectionOutFilter(myOutFilter)"> {{myOutFilter}}
+						</label>
+					</div>
 	
 					<hr width="100%" size="18"/>
 
-					<button type="submit" class="btn btn-primary glyphicon glyphicon-file" ng-click="nuevo()"></button>
-					<button type="submit" class="btn btn-primary glyphicon glyphicon-floppy-disk" 
-							ng-click="grabar(selectDriver)"
-							ng-disabled="myForm.driverId.$dirty && myForm.driverId.$invalid || 
-										myForm.timeOutConnect.$dirty && myForm.timeOutConnect.$invalid ||
-										myForm.timeOutRead.$dirty && myForm.timeOutRead.$invalid ||
-										myForm.retries.$dirty && myForm.retries.$invalid ||
-										myForm.timeOutQueueRead.$dirty && myForm.timeOutQueueRead.$invalid ||
-										myForm.nameDriver.$dirty && myForm.nameDriver.$invalid ||
-										myForm.port.$dirty && myForm.port.$invalid ||
-										myForm.maxConcurrentConnections.$dirty && myForm.maxConcurrentConnections.$invalid ||
-										myForm.forwardProcess.$dirty && myForm.forwardProcess.$invalid" >
+					<button type="submit" class="btn btn-primary glyphicon glyphicon-file" ng-click="nuevo()">
 					</button>
-					<button class="btn btn-primary glyphicon glyphicon-refresh" ng-click="refrescar()"></button>
+					<button type="submit" class="btn btn-primary glyphicon glyphicon-floppy-disk" 
+							ng-click="grabar(selectDriver)"	ng-disabled="!formulario.$valid">
+					</button>
+					<button class="btn btn-primary glyphicon glyphicon-refresh" ng-click="refrescar()">
+					</button>
 				</div>
 			</div>
 

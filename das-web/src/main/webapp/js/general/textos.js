@@ -115,6 +115,24 @@ angular.module('app.textos', [])
 	statustbl: 'Estado',
 	opcionActionTbl: 'Accion'
 })
+.constant('serviceTexto', {
+	//Descripcion de las controles individuales
+	titulo: 'CONFIGURADOR DE SERVICIOS',
+	//******Descripcion de los Tag
+	serviceId: 'Identificado:',
+	serviceDesc: 'Descripcion:',
+	discriminationRules: 'Reglas:',
+	authorizationBins: 'Autorizador:',
+	binId: 'Bin Id:',
+	binStatus: 'Bin Estado:',
+	routes: 'Routes:',
+	//Tabla de balanceadores
+	serviceIdTbl: 'Codigo',
+	serviceDescTbl: 'Descripcion',
+	discriminationRulesTbl: 'Reglas',
+	authorizationBinsTbl: 'Autorizador',
+	opcionActionTbl: 'Accion'
+})
 .constant('botonTexto', {
 	//Indice de menu general
 	formateador: 'Formateador',
@@ -138,5 +156,6 @@ angular.module('app.textos', [])
 	urlAdminQueue: 'http://localhost:8080/ResDAS/AdminQueue',
 	urlBalancer: 'http://localhost:8080/ResDAS/Balancer',
 	urlRoute: 'http://localhost:8080/ResDAS/Route',
-	urlDriver: 'http://localhost:8080/ResDAS/Driver'
+	urlDriver: 'http://localhost:8080/ResDAS/Driver',
+	urlService: 'http://localhost:8080/ResDAS/Service'
 });

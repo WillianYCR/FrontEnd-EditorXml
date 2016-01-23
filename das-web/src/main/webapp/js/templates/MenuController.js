@@ -27,7 +27,7 @@ angular.module('app.controllers')
 		$state.go('route');
 	};
 	$scope.viewServicio = function(){
-		$state.go('login');
+		$state.go('service');
 	};
 	$scope.viewNodo = function(){
 		$state.go('login');

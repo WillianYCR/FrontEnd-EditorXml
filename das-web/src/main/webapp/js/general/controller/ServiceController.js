@@ -1,20 +1,18 @@
 angular.module('app.controllers')
-.controller('adminQueueController',
-	['$scope', '$http', '$state',  'queryRuta', 'queueTxt',
-		function($scope,  $http, $state, $queryRuta, queueTxt){
+.controller('serviceController',
+	['$scope', '$http', '$state',  'queryRuta', 'serviceTexto',
+		function($scope,  $http, $state, $queryRuta, serviceTexto){
 	// establece el texto en la applicacion
-			$scope.queueTxt = queueTxt;
+			$scope.serviceTexto = serviceTexto;
 			//variables de inicio
-			$scope.adminQueueGeneral = {}; //almacena toda la data del servicio del objeto "AdminQueues"
-			$scope.selectQueue = { messageType:{  
-												supportedMessageFormats:
-													{messageFormatId:[]}
-											}
-								 }; //es parte No dependeiente de la data general(AdminQueues.adminQueues), 
-									 //es usado para mostrar la data y ser enviado paraguardar
+			$scope.serviceGeneral = {}; //almacena toda la data del servicio del objeto "services"
+			$scope.selectService = { authorizationBins:{bin:[]},
+									routes:{routeId:[]}
+								 }; //es parte No dependeiente de la data general(services.services), 
+									 //es usado para mostrar la data y ser enviado para guardar
 			
-			$scope.listMessageFormat = []; //Lista de la data servicio del objetoMEssageFormat
-			$scope.selectionMessage = [];//Valores seleccionados de los formatos
+			$scope.listRoute = []; //Lista de la data servicio del objeto Routes
+			$scope.selectionRoute = [];//Valores seleccionados de route
 
 			$scope.responseRest = ""; //Mensaje de la respuesta generada por las consultas y validaciones
 			$scope.responseRestTag = ""; //Estilo de la respuesta generada por las consultas y validaciones
@@ -24,28 +22,28 @@ angular.module('app.controllers')
 
 //***********Inicio de proceso por default
 			readData();
-			readDataFormat();
+			readDataRoute();
 //***********Fin de proceso por default
 
-//***********Inicio Consulta servicio rest - "MessageFormat"
+//***********Inicio Consulta servicio rest - "Servicio" y "Route"
 			function readData() {
 				console.log("Procesando SELECT...");
-				$http.get($queryRuta.urlAdminQueue)
+				$http.get($queryRuta.urlService)
 					.success(function(data){
-						console.log("N° registros de colas:", data.adminQueues.length);
-						$scope.adminQueueGeneral = data;
+						console.log("N° registros de servicios:", data.services.length);
+						$scope.serviceGeneral = data;
 					})
 					.error(function(data, status) {
 						console.log(status);
 						responseData(data);
 					});
 			}
-			function readDataFormat() {
+			function readDataRoute() {
 				console.log("Procesando SELECT...");
-				$http.get($queryRuta.urlMessageFormat)
+				$http.get($queryRuta.urlRoute)
 					.success(function(data){
-						console.log("N° registros formateos:", data.messageFormats.length);
-						$scope.listMessageFormat = data.messageFormats;
+						console.log("N° registros routes:", data.routes.length);
+						$scope.listRoute = data.routes;
 					})
 					.error(function(data, status) {
 						console.log(status);
@@ -55,7 +53,7 @@ angular.module('app.controllers')
 
 			function saveData(parData) {
 				console.log("Procesando SAVE...:" , parData);
-				$http.post($queryRuta.urlAdminQueue, parData)
+				$http.post($queryRuta.urlService, parData)
 					.success(function(data){
 						responseData(data);
 						refreshData();
@@ -68,7 +66,7 @@ angular.module('app.controllers')
 
 			function updateData(parData) {
 				console.log("Procesando UPDATE...:" , parData);
-				$http.put($queryRuta.urlAdminQueue, parData)
+				$http.put($queryRuta.urlService, parData)
 					.success(function(data){
 						responseData(data);
 						refreshData();
@@ -81,7 +79,7 @@ angular.module('app.controllers')
 
 			function deleteData(parId) {
 				console.log("Procesando DELETE...", parId);
-				$http.delete($queryRuta.urlAdminQueue + '/' + parId).
+				$http.delete($queryRuta.urlService + '/' + parId).
 					success(function(data){
 						responseData(data);
 						refreshData();
@@ -91,13 +89,13 @@ angular.module('app.controllers')
 						responseData(data);
 					});
 			}
-//***********Inicio Consulta servicio rest - "MessageFormat"
+//***********Inicio Consulta servicio rest - "Servicio" y "Route"
 
 //***********Inicio de metodos Fijos para mantener actualizado la informacion
 			function refreshData (){
 				console.log("Refrescando la data...");
 				readData();	
-				readDataFormat();
+				readDataRoute();
 				limpiarCampos();			
 			}
 
@@ -132,11 +130,11 @@ angular.module('app.controllers')
 
 			function limpiarCampos(){
 				stateNew = true;
-				$scope.selectQueue.adminQueueId = "";
-				$scope.selectQueue.workerThreadsCount = "";
-				$scope.selectQueue.messageType.messageTypeId = "";
-				$scope.selectQueue.messageType.messageTypeDesc = "";
-				$scope.selectionMessage = [];
+				$scope.selectService.serviceId = "";
+				$scope.selectService.serviceDesc = "";
+				$scope.selectService.discriminationRules = "";
+				//$scope.selectService.messageType.messageTypeDesc = "";
+				$scope.selectionRoute = [];
 			}
 //***********Fin de metodos Fijos para mantener actualizado la informacion
 			
@@ -149,18 +147,18 @@ angular.module('app.controllers')
 			$scope.refrescar = function(){
 				stateNew = true;
 				readData();
-				readDataFormat();
+				readDataRoute();
 				closeAlert();
 			};
 
 			$scope.grabar = function(dataSave){
 				console.log("Inicio de evento grabar...:" , dataSave);
-				$scope.selectQueue.messageType.supportedMessageFormats.messageFormatId = $scope.selectionMessage;
+				$scope.selectService.routes.routeId = $scope.selectionRoute;
 				console.log("Inicio de evento grabar Cargado...:" , dataSave);
 				var existId = false;
-				angular.forEach($scope.adminQueueGeneral.adminQueues, function(value, key){
-				    if(value.adminQueueId == dataSave.adminQueueId){
-				    	console.log("Validando identificador...:", dataSave.adminQueueId);
+				angular.forEach($scope.serviceGeneral.services, function(value, key){
+				    if(value.serviceId == dataSave.serviceId){
+				    	console.log("Validando identificador...:", dataSave.serviceId);
 				      	existId = true;
 				    }
 				});
@@ -185,13 +183,13 @@ angular.module('app.controllers')
 				console.log("Inicio de disponibilidad para editar...:", valRow);
 				closeAlert();
 				stateNew = false;
-				$scope.selectQueue = angular.copy(valRow);
+				$scope.selectService = angular.copy(valRow);
 
-				if(!$scope.selectQueue.messageType.supportedMessageFormats.messageFormatId){
-					$scope.selectQueue.messageType.supportedMessageFormats.messageFormatId = [];
+				if(!$scope.selectService.routes.routeId){
+					$scope.selectService.routes.routeId = [];
 				} 
 
-				$scope.selectionMessage = $scope.selectQueue.messageType.supportedMessageFormats.messageFormatId;
+				$scope.selectionRoute = $scope.selectService.routes.routeId;
 			};
 			
 			$scope.quitar = function(valId){
@@ -206,18 +204,16 @@ angular.module('app.controllers')
 				});
 			};
 
-			$scope.getSelectionMessage = function getSelectionMessage(filter) {
-			    var idy = $scope.selectionMessage.indexOf(filter);
+			$scope.getSelectionRoute = function getSelectionRoute(filter) {
+			    var idy = $scope.selectionRoute.indexOf(filter);
 			    if (idy > -1) {
-			    	$scope.selectionMessage.splice(idy, 1);
+			    	$scope.selectionRoute.splice(idy, 1);
 			    }else {
-			    	$scope.selectionMessage.push(filter);
+			    	$scope.selectionRoute.push(filter);
 			    }
-			    console.log("lista message: ", $scope.selectionMessage);
-			    console.log("lista AdminQueue: ", $scope.selectQueue);
+			    console.log("lista routes: ", $scope.selectionRoute);
 			};
 //***********Fin de Botones de proceso, controles
 			
-
 		}
 	]);
