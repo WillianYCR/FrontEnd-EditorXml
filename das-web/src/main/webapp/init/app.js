@@ -26,12 +26,22 @@ angular.module('app', ['ui.router','app.controllers','app.directives','app.texto
 	})
 	.state('adminQueue', {
 		url : '/adminQueue',
-		templateUrl : '../page/pageAdminQueues.html',
+		templateUrl : '../page/pageAdminQueue.html',
 		controller : 'adminQueueController'
 	})
 	.state('driver', {
 		url : '/driver',
-		templateUrl : '../page/pageDrivers.html',
+		templateUrl : '../page/pageDriver.html',
 		controller : 'driverController'
+	})
+	.state('balancer', {
+		url : '/balancer',
+		templateUrl : '../page/pageBalancer.html',
+		controller : 'balancerController'
+	})
+	.state('route', {
+		url : '/route',
+		templateUrl : '../page/pageRoute.html',
+		controller : 'routeController'
 	});
 }]);

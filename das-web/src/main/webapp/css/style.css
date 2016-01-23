@@ -36,6 +36,7 @@ footer {
 	position: absolute;
 	bottom: 0;
 }
+
 table, th , td {
   border: 2px solid grey;
   border-collapse: collapse;
@@ -48,6 +49,7 @@ table tr:nth-child(odd) {
 table tr:nth-child(even) {
   background-color: #ffffff;
 }
+
 .menuitem {
 	
 }

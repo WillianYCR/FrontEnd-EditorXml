@@ -8,21 +8,22 @@ angular.module('app.textos', [])
 	olvido: '\u00bfOlvid\u00f3 su contrase\u00f1a?',
 	ingresar: 'INGRESAR'
 })
-.constant('messageFormatTexto', {
+.constant('formatTexto', {
+	//Descripcion de las controles individuales
 	titulo: 'FORMATEADOR DE TRAMA',
-	messageFormatId: 'Identificador : ',
-	messageFormatDesc: 'Descripcion :',
-	transformerConfigFile: 'Archivo transformador : ',
-	routerConfigFile: 'Archivo roteador : ',
-	transformerStruct: 'Tipo estructura : '
-})
-.constant('tablaTexto', {
-	messageFormatId: 'Identificador',
-	messageFormatDesc: 'Descripcion',
-	transformerConfigFile: 'Archivo transformador',
-	routerConfigFile: 'Archivo roteador',
-	transformerStruct: 'Tipo estructura',
-	opcionAction: 'Accion'
+	//******Descripcion de los Tag
+	messageFormatId: 'Identificador:',
+	messageFormatDesc: 'Descripcion:',
+	transformerConfigFile: 'Archivo transformador:',
+	routerConfigFile: 'Archivo roteador:',
+	transformerStruct: 'Tipo estructura:',
+	//Para tablas
+	messageFormatIdTbl: 'Identificador',
+	messageFormatDescTbl: 'Descripcion',
+	transformerConfigFileTbl: 'Archivo transformador',
+	routerConfigFileTbl: 'Archivo roteador',
+	transformerStructTbl: 'Tipo estructura',
+	opcionActionTbl: 'Accion'
 })
 .constant('queueTxt', {
 	//Descripcion de las controles individuales
@@ -39,45 +40,82 @@ angular.module('app.textos', [])
 	messageType: 'TIPO DE MENSAJERIA',
 	messageTypeId: 'Id. mensaje:',
 	messageTypeDesc: 'Descripcion:',
-	supportedMessageFormats: 'FORMATOS SOPORTADOS',
+	supportedMessageFormats: 'Formatos soportados',
 	//Tabla de formatos
 	messageFormatIdTbl: 'Identificador',
 	opcionActionTbl: 'Accion',
 	//Descripcion de los titulo de la tabla de colas
 	adminQueueIdTbl: 'Identificador',
 	workerThreadsCountTbl: 'N° hilos',
-	messageTypeTbl: 'Formato'
+	messageTypeIdTbl: 'Formato',
+	messageTypeDescTbl: 'Mensaje'
 })
 .constant('driverTexto', {
+	//Descripcion de las controles individuales
 	titulo: 'CONFIGURADOR DE DRIVERS',
-	driverId: 'Identificador del driver: ',
-	adminQueueId: 'Administrador de cola : ',
-	type: 'Modo de operacion : ',
-	timeOutConnect: 'Tiempo maximo de conexion : ',
-	timeOutRead: 'Tiempo maximo de lectura : ',
-	retries: 'Cantidad de reintentos : ',
-	timeOutQueueRead: 'Tiempo de lectura de cola : ',
-
-	name: 'Nombre del driver : ',
-	port: 'puerto : ',
-	maxConcurrentConnections: 'Maximo de conexiones concurrentes : ',
-	forwardProcess: 'Procesos de destino : ',
-	validaIp: 'Validacion de IP : ',
-	concurrentUserSupport: 'Permiso de conexiones concurrentes : ',
-	filters: 'FILTROS : ',
-	inFilters: 'Filtros de entradas : ',
-	outFilters: 'Filtros de salidas : '
+	driverId: 'Codigo:',
+	adminQueueId: 'Cola:',
+	type: 'Operacion:',
+	timeOutConnect: 'Tiempo conexion:',
+	timeOutRead: 'Tiempo lectura:',
+	retries: 'N° Reintentos:',
+	timeOutQueueRead: 'Tiempo lectura cola:',
+	//******Descripcion de los Tag
+	name: 'Nombre del driver:',
+	port: 'Puerto:',
+	maxConcurrentConnections: 'Max. concurrentes:',
+	forwardProcess: 'Procesos destino:',
+	validaIp: 'Validar IP:',
+	concurrentUserSupport: 'Permiso concurrencia:',
+	filters: 'FILTROS:',
+	inFilters: 'Filtro entradas:',
+	outFilters: 'Filtro salidas:',
+	//Descripcion de los titulo de la tabla
+	driverIdTbl: 'Codigo',
+	adminQueueIdTbl: 'Cola',
+	typeTbl: 'Operacion:',
+	nameTbl: 'Driver',
+	portTbl: 'Puerto',
+	maxConcurrentConnectionsTbl: 'Conexiones',
+	forwardProcessTbl: 'Destino',
+	validaIpTbl: 'Validar',
+	concurrentUserSupportTbl: 'Permiso'
+})
+.constant('balancerTexto', {
+	//Descripcion de las controles individuales
+	titulo: 'CONFIGURADOR DE BALANCEADORES',
+	attribute: 'Atributo general',
+	classManager: 'Clase:',
+	queueLocation: 'IP-Puerto:',
+	sleepTime: 'T. Espera:',
+	refreshTime: 'T. Refrescar:',
+	//******Descripcion de los atributos
+	id: 'Codigo:',
+	//******Descripcion de los Tag
+	algorithm: 'Algoritmo: ',
+	workerThreadsCount: 'Modo de operacion :',
+	//Tabla de balanceadores
+	idTbl: 'Codigo',
+	algorithmTbl: 'Algoritmo',
+	workerThreadsCountTbl: 'N° Hilos ',
+	opcionActionTbl: 'Accion'
+})
+.constant('routeTexto', {
+	//Descripcion de las controles individuales
+	titulo: 'CONFIGURADOR DE ROUTERS',
+	//******Descripcion de los Tag
+	routeId: 'Codigo:',
+	routeDesc: 'Descripcion:',
+	balancerId: 'Balanceador:',
+	status: 'Estado:',
+	//Tabla de balanceadores
+	routeIdTbl: 'Codigo',
+	routeDescTbl: 'Descripcion',
+	balancerIdTbl: 'Balanceador',
+	statustbl: 'Estado',
+	opcionActionTbl: 'Accion'
 })
 .constant('botonTexto', {
-	//Botonde de mantenimiento generañ
-	grabar: 'GRABAR',
-	agregar: 'AGREGAR',
-	quitar: 'QUITAR',
-	cancelar: 'CANCELAR',
-	nuevo: 'NUEVO',
-	mas: '+',
-	menos: '-',
-
 	//Indice de menu general
 	formateador: 'Formateador',
 	cola: 'Cola',
@@ -97,5 +135,8 @@ angular.module('app.textos', [])
 	ipPuerto: 'localhost:1099',
 	//Ruta de los servicio expuesto, genenal
 	urlMessageFormat: 'http://localhost:8080/ResDAS/MessageFormat',
-	urlAdminQueue: 'http://localhost:8080/ResDAS/AdminQueue'
+	urlAdminQueue: 'http://localhost:8080/ResDAS/AdminQueue',
+	urlBalancer: 'http://localhost:8080/ResDAS/Balancer',
+	urlRoute: 'http://localhost:8080/ResDAS/Route',
+	urlDriver: 'http://localhost:8080/ResDAS/Driver'
 });

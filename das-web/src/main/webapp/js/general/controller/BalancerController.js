@@ -1,61 +1,42 @@
 angular.module('app.controllers')
-.controller('adminQueueController',
-	['$scope', '$http', '$state',  'queryRuta', 'queueTxt',
-		function($scope,  $http, $state, $queryRuta, queueTxt){
+.controller('balancerController',
+	['$scope', '$http', '$state', 'balancerTexto', 'queryRuta',
+		function($scope,  $http, $state, balancerTexto, $queryRuta){
 	// establece el texto en la applicacion
-			$scope.queueTxt = queueTxt;
+			$scope.balancerTexto = balancerTexto;
 			//variables de inicio
-			$scope.adminQueueGeneral = {}; //almacena toda la data del servicio del objeto "AdminQueues"
-			$scope.selectQueue = { messageType:{  
-												supportedMessageFormats:
-													{messageFormatId:[]}
-											}
-								 }; //es parte No dependeiente de la data general(AdminQueues.adminQueues), 
-									 //es usado para mostrar la data y ser enviado paraguardar
-			
-			$scope.listMessageFormat = []; //Lista de la data servicio del objetoMEssageFormat
-			$scope.selectionMessage = [];//Valores seleccionados de los formatos
+			$scope.listBalancer = []; //almacena toda la data del servicio del objeto "Balancer"
+			$scope.selectBalancer = {}; //es parte No dependeiente de la data general, 
+									 		//es usado para mostrar la data y ser enviado paraguardar
 
 			$scope.responseRest = ""; //Mensaje de la respuesta generada por las consultas y validaciones
 			$scope.responseRestTag = ""; //Estilo de la respuesta generada por las consultas y validaciones
-			$scope.hideAlert = true; //Visualización de la alerta de la respuesta(true: se muestra, false: se oculta)
+			$scope.hideAlert = true; //Visualización de la alerta de respuesta(true: se muestra, false: se oculta)
 			var stateNew = true; //Definir sie el proceso es un nuevo registo o una actualizacion
 								 //(true: registro nuevo, false: registro a editar)
 
 //***********Inicio de proceso por default
 			readData();
-			readDataFormat();
 //***********Fin de proceso por default
 
-//***********Inicio Consulta servicio rest - "MessageFormat"
+//***********Inicio Consulta servicio rest - "Balancer"
 			function readData() {
 				console.log("Procesando SELECT...");
-				$http.get($queryRuta.urlAdminQueue)
+				$http.get($queryRuta.urlBalancer)
 					.success(function(data){
-						console.log("N° registros de colas:", data.adminQueues.length);
-						$scope.adminQueueGeneral = data;
+						console.log("N° registros de balanceadores:", data.balancers.length);
+						$scope.listBalancer = data.balancers;
 					})
 					.error(function(data, status) {
 						console.log(status);
 						responseData(data);
 					});
-			}
-			function readDataFormat() {
-				console.log("Procesando SELECT...");
-				$http.get($queryRuta.urlMessageFormat)
-					.success(function(data){
-						console.log("N° registros formateos:", data.messageFormats.length);
-						$scope.listMessageFormat = data.messageFormats;
-					})
-					.error(function(data, status) {
-						console.log(status);
-						responseData(data);
-					});
+
 			}
 
 			function saveData(parData) {
 				console.log("Procesando SAVE...:" , parData);
-				$http.post($queryRuta.urlAdminQueue, parData)
+				$http.post($queryRuta.urlBalancer, parData)
 					.success(function(data){
 						responseData(data);
 						refreshData();
@@ -68,7 +49,7 @@ angular.module('app.controllers')
 
 			function updateData(parData) {
 				console.log("Procesando UPDATE...:" , parData);
-				$http.put($queryRuta.urlAdminQueue, parData)
+				$http.put($queryRuta.urlBalancer, parData)
 					.success(function(data){
 						responseData(data);
 						refreshData();
@@ -81,7 +62,7 @@ angular.module('app.controllers')
 
 			function deleteData(parId) {
 				console.log("Procesando DELETE...", parId);
-				$http.delete($queryRuta.urlAdminQueue + '/' + parId).
+				$http.delete($queryRuta.urlBalancer + '/' + parId).
 					success(function(data){
 						responseData(data);
 						refreshData();
@@ -91,13 +72,12 @@ angular.module('app.controllers')
 						responseData(data);
 					});
 			}
-//***********Inicio Consulta servicio rest - "MessageFormat"
+//***********Inicio Consulta servicio rest - "Balancer"
 
 //***********Inicio de metodos Fijos para mantener actualizado la informacion
 			function refreshData (){
 				console.log("Refrescando la data...");
 				readData();	
-				readDataFormat();
 				limpiarCampos();			
 			}
 
@@ -132,13 +112,11 @@ angular.module('app.controllers')
 
 			function limpiarCampos(){
 				stateNew = true;
-				$scope.selectQueue.adminQueueId = "";
-				$scope.selectQueue.workerThreadsCount = "";
-				$scope.selectQueue.messageType.messageTypeId = "";
-				$scope.selectQueue.messageType.messageTypeDesc = "";
-				$scope.selectionMessage = [];
+				$scope.selectBalancer.id = "";
+				$scope.selectBalancer.algorithm = "";
+				$scope.selectBalancer.workerThreadsCount = "";
 			}
-//***********Fin de metodos Fijos para mantener actualizado la informacion
+//***********Inicio de metodos Fijos para mantener actualizado la informacion			
 			
 //***********Inicio de Botones de proceso, controles
 			$scope.nuevo = function(){
@@ -149,16 +127,15 @@ angular.module('app.controllers')
 			$scope.refrescar = function(){
 				stateNew = true;
 				readData();
-				readDataFormat();
 				closeAlert();
 			};
 
 			$scope.grabar = function(dataSave){
 				console.log("Inicio de evento grabar...:" , dataSave);
 				var existId = false;
-				angular.forEach($scope.adminQueueGeneral.adminQueues, function(value, key){
-				    if(value.adminQueueId == dataSave.adminQueueId){
-				    	console.log("Validando identificador...:", dataSave.adminQueueId);
+				angular.forEach($scope.listBalancer, function(value, key){
+				    if(value.id == dataSave.id){
+				    	console.log("Validando identificador...:", dataSave.id);
 				      	existId = true;
 				    }
 				});
@@ -177,19 +154,14 @@ angular.module('app.controllers')
 						responseDataWarning("No se puede editar, No existe el identificador...");
 					}
 				}
+
 			};
 
 			$scope.editar = function(valRow){
 				console.log("Inicio de disponibilidad para editar...:", valRow);
 				closeAlert();
 				stateNew = false;
-				$scope.selectQueue = angular.copy(valRow);
-
-				if(!$scope.selectQueue.messageType.supportedMessageFormats.messageFormatId){
-					$scope.selectQueue.messageType.supportedMessageFormats.messageFormatId = [];
-				} 
-
-				$scope.selectionMessage = $scope.selectQueue.messageType.supportedMessageFormats.messageFormatId;
+				$scope.selectBalancer = angular.copy(valRow);
 			};
 			
 			$scope.quitar = function(valId){
@@ -203,18 +175,10 @@ angular.module('app.controllers')
 					}
 				});
 			};
-
-			$scope.getSelectionMessage = function getSelectionMessage(filter) {
-			    var idy = $scope.selectionMessage.indexOf(filter);
-			    if (idy > -1) {
-			    	$scope.selectionMessage.splice(idy, 1);
-			    }else {
-			    	$scope.selectionMessage.push(filter);
-			    }
-			    console.log("lista message: ", $scope.selectionMessage);
-			    console.log("lista AdminQueue: ", $scope.selectQueue);
-			};
 //***********Fin de Botones de proceso, controles
 
 		}
 	]);
+
+
+

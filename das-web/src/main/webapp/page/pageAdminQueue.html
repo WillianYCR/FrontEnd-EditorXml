@@ -8,20 +8,21 @@
 						<div class="col-md-6">
 							<label>{{queueTxt.queueLocation}}</label> 
 							<input type="text" id="queueLocation" class="form-control"
-								style="width: 200px" ng-model="selectQueue.queueLocation" required autofocus> 
+								style="width: 200px" ng-model="adminQueueGeneral.queueLocation" disabled> 
 						</div>
 						<div class="col-md-3">
 							<label>{{queueTxt.sleepTime}}</label> 
 							<input type="text" id="sleepTime" class="form-control"
-								style="width: 100px" ng-model="selectQueue.sleepTime" required autofocus> 
+								style="width: 100px" ng-model="adminQueueGeneral.sleepTime" disabled> 
 						</div>
 						<div class="col-md-3">
 							<label>{{queueTxt.refreshTime}}</label>
 							<input type="text" id="refreshTime" class="form-control"
-								style="width: 100px" ng-model="selectQueue.refreshTime" required autofocus> 
+								style="width: 100px" ng-model="adminQueueGeneral.refreshTime" disabled> 
 						</div>
 					</div>
-					<br/>
+					<hr width="100%" size="14"/>
+
 					<div class="row" style="width:500px">
 						<div class="col-md-4">
 							<label>{{queueTxt.adminQueueId}}</label> 
@@ -35,64 +36,41 @@
 						</div>
 					</div>
 					<br/>
+
 					<label>{{queueTxt.messageType}}</label><br />
 					<div class="row" style="width:500px">
 						<div class="col-md-4">
 							<label>{{queueTxt.messageTypeId}}</label>
-							<input type="text" id="messageTypeId" class="form-control" style="width: 150px" ng-model="selectQueue.messageTypeId" required autofocus> 		
+							<input type="text" id="messageTypeId" class="form-control" style="width: 150px" ng-model="selectQueue.messageType.messageTypeId" required autofocus> 		
 						</div>
 						<div class="col-md-8">
 							<label>{{queueTxt.messageTypeDesc}}</label>
-							<input type="text" id="messageTypeDesc" class="form-control" style="width: 300px" ng-model="selectQueue.messageTypeDesc" required autofocus>		
+							<input type="text" id="messageTypeDesc" class="form-control" style="width: 300px" ng-model="selectQueue.messageType.messageTypeDesc" required autofocus>		
 						</div>
 					</div>
 					<br/>
+
+					<!--Lista de los formatos soportados para las colas-->
 	                <label>{{queueTxt.supportedMessageFormats}}</label><br />
-					<div class="row" style="width: 400px">
-						<div class="col-md-5">
-							<select class="form-control" style="width: 160px" id="tipotransformador">
-			                    <option>Seleccione...</option>
-			                    <option>ISOINTST</option>
-			                    <option>UNIINTER</option>
-			                    <option>YOPE</option>
-			                </select> 
-						</div>
-						<div class="col-md-1">
-							<button class="btn btn-info btn-xs glyphicon glyphicon-floppy-disk"></button>
-						</div>
-						<div class="col-md-1"></div>
-						<div class="col-md-1">
-							<button class="btn btn-info btn-xs glyphicon glyphicon-refresh" ng-click="refrescar()"></button>
-						</div>
-						<div class="col-md-2"></div>
-					</div>
-					<br/>
-					<table class="table" cellspacing="0" style="width: 300px">
-					    <thead>
-					     	<tr>
-						        <th style="width: 150px">{{queueTxt.messageFormatIdTbl}}</th>
-						        <th style="width: 150px">{{queueTxt.opcionActionTbl}}</th>
-					      	</tr>
-					    </thead>
-					    <tbody>
-					      	<tr class="success" ng-repeat="valueRow in listMessageFormat">
-						        <td>{{valueRow.messageFormatId}}</td>
-						        <td >
-						        	<button class="btn btn-success btn-xs glyphicon glyphicon-pencil" ng-click="editar(valueRow)"></button>
-						        	<button class="btn btn-danger btn-xs glyphicon glyphicon-trash" ng-click="quitar(valueRow.messageFormatId)"></button>
-						        </td>
-					      	</tr>
-					    </tbody>
-					</table>
+	                <label ng-repeat="myMessage in listMessageFormat" ng-model="selectQueue.messageType.supportedMessageFormats.messageFormatId" style="width: 100px">
+					  <input 
+					    type="checkbox"
+					    name="message"
+					    value="{{myMessage.messageFormatId}}"
+					    ng-checked="selectionMessage.indexOf(myMessage.messageFormatId) > -1"
+					    ng-click="getSelectionMessage(myMessage.messageFormatId)"> 
+					    {{myMessage.messageFormatId}}
+					</label>
+					<hr width="100%" size="14"/>
 
 					<button class="btn btn-primary glyphicon glyphicon-file" ng-click="nuevo()"></button>
-					<button class="btn btn-primary glyphicon glyphicon-floppy-disk" ng-click="grabar(selectMessageFormat)"></button>
+					<button class="btn btn-primary glyphicon glyphicon-floppy-disk" ng-click="grabar(selectQueue)"></button>
 					<button class="btn btn-primary glyphicon glyphicon-refresh" ng-click="refrescar()"></button>
 				</div>
 			</div>
 
 			<div class="row" ng-hide="hideAlert">
-				<div class="col-md-8">
+				<div class="col-md-7">
 					<div class="alert alert-{{responseRestTag}}">
 					  <strong>Respuesta :</strong> {{responseRest}}
 					</div>
@@ -102,22 +80,24 @@
 			<table class="table" cellspacing="0" style="width: 650px">
 			    <thead>
 			     	<tr>
-				        <th style="width: 100px">{{queueTxt.adminQueueIdTbl}}</th>
-				        <th style="width: 300px">{{queueTxt.workerThreadsCountTbl}}</th>
-				        <th style="width: 150px">{{queueTxt.messageTypeTbl}}</th>
+				        <th style="width: 120px">{{queueTxt.adminQueueIdTbl}}</th>
+				        <th style="width: 70px">{{queueTxt.workerThreadsCountTbl}}</th>
+				        <th style="width: 120px">{{queueTxt.messageTypeIdTbl}}</th>
+				        <th style="width: 240px">{{queueTxt.messageTypeDescTbl}}</th>
 				        <th style="width: 100px">{{queueTxt.opcionActionTbl}}</th>
 			      	</tr>
 			    </thead>
 			    <tbody>
-			      	<tr class="success" ng-repeat="valueRow in listAdminQueue">
+			      	<tr class="success" ng-repeat="valueRow in adminQueueGeneral.adminQueues">
 				        <td>{{valueRow.adminQueueId}}</td>
 				        <td>{{valueRow.workerThreadsCount}}</td>
-				        <td>{{valueRow.messageTypeId}}</td>
+				        <td>{{valueRow.messageType.messageTypeId}}</td>
+				        <td>{{valueRow.messageType.messageTypeDesc}}</td>
 				        <td >
 				        	<button class="btn btn-success btn-xs glyphicon glyphicon-pencil" 
 				        			ng-click="editar(valueRow)"></button>
 				        	<button class="btn btn-danger btn-xs glyphicon glyphicon-trash" 
-				        			ng-click="quitar(valueRow.messageFormatId)"></button>
+				        			ng-click="quitar(valueRow.adminQueueId)"></button>
 				        </td>
 			      	</tr>
 			    </tbody>

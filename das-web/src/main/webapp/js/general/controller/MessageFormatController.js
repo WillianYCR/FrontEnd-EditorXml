@@ -1,29 +1,34 @@
 angular.module('app.controllers')
 .controller('messageFormatController',
-	['$scope', '$http', '$state', 'messageFormatTexto', 'botonTexto',  'tablaTexto', 'queryRuta',
-		function($scope,  $http, $state, messageFormatTexto, botonTexto, tablaTexto, $queryRuta){
+	['$scope', '$http', '$state', 'formatTexto', 'queryRuta',
+		function($scope,  $http, $state, formatTexto, $queryRuta){
 	// establece el texto en la applicacion
-			$scope.messageFormatTexto = messageFormatTexto;
-			$scope.botonTexto = botonTexto;
-			$scope.tablaTexto = tablaTexto;
+			$scope.formatTexto = formatTexto;
 			//variables de inicio
-			$scope.listMessageFormat = [];
-			$scope.selectMessageFormat = {};
-			$scope.listTypeFormater = [];
-			$scope.responseRest = "";
-			$scope.responseRestTag = "";
-			$scope.hideAlert = true
-			var stateNew = true;
-
-			$scope.listTypeFormater = [{"transformerStruct":"ISO8583"},{"transformerStruct":"PLAIN"}];
+			$scope.listMessageFormat = []; //almacena toda la data del servicio del objeto "messageFormats"
+			$scope.selectMessageFormat = {}; //es parte No dependeiente de la data general, 
+									 		//es usado para mostrar la data y ser enviado paraguardar
 			
+
+			$scope.responseRest = ""; //Mensaje de la respuesta generada por las consultas y validaciones
+			$scope.responseRestTag = ""; //Estilo de la respuesta generada por las consultas y validaciones
+			$scope.hideAlert = true; //Visualización de la alerta de respuesta(true: se muestra, false: se oculta)
+			var stateNew = true; //Definir sie el proceso es un nuevo registo o una actualizacion
+								 //(true: registro nuevo, false: registro a editar)
+
+			$scope.listTypeFormater = []; //Valor fijo para el combo sobre los tipos de formatos: evaluar caso
+			$scope.listTypeFormater = [{"transformerStruct":"ISO8583"},{"transformerStruct":"PLAIN"}];
+
+//***********Inicio de proceso por default
 			readData();
-			//Consulta servicio rest- Daos
+//***********Fin de proceso por default
+
+//***********Inicio Consulta servicio rest - "MessageFormat"
 			function readData() {
 				console.log("Procesando SELECT...");
 				$http.get($queryRuta.urlMessageFormat)
 					.success(function(data){
-						console.log("N° registros:", data.messageFormats.length);
+						console.log("N° registros de formatos:", data.messageFormats.length);
 						$scope.listMessageFormat = data.messageFormats;
 					})
 					.error(function(data, status) {
@@ -71,10 +76,13 @@ angular.module('app.controllers')
 						responseData(data);
 					});
 			}
+//***********Inicio Consulta servicio rest - "MessageFormat"
 
+//***********Inicio de metodos Fijos para mantener actualizado la informacion
 			function refreshData (){
 				console.log("Refrescando la data...");
-				readData();				
+				readData();	
+				limpiarCampos();			
 			}
 
 			function responseData(parData){
@@ -95,8 +103,28 @@ angular.module('app.controllers')
 				$scope.responseRestTag = "warning";
 				showAlert();
 			}
+
+			function showAlert() {
+				$scope.hideAlert = false;
+				console.log("¿Se oculta alerta?: ", $scope.hideAlert);
+			}
+
+			function closeAlert() {
+				$scope.hideAlert = true    
+				console.log("¿Se oculta alerta?: ", $scope.hideAlert);
+			}
+
+			function limpiarCampos(){
+				stateNew = true;
+				$scope.selectMessageFormat.messageFormatId = "";
+				$scope.selectMessageFormat.messageFormatDesc = "";
+				$scope.selectMessageFormat.transformerConfigFile = "";
+				$scope.selectMessageFormat.routerConfigFile = "";
+				$scope.selectMessageFormat.transformerStruct = "";
+			}
+//***********Inicio de metodos Fijos para mantener actualizado la informacion			
 			
-			//Botones de proceso
+//***********Inicio de Botones de proceso, controles
 			$scope.nuevo = function(){
 				limpiarCampos();
 				closeAlert();
@@ -132,29 +160,9 @@ angular.module('app.controllers')
 						responseDataWarning("No se puede editar, No existe el identificador...");
 					}
 				}
+
 			};
 
-
-			function showAlert() {
-				$scope.hideAlert = false;
-				console.log("Valor hideAlert: ", $scope.hideAlert);
-			}
-
-			function closeAlert() {
-				$scope.hideAlert = true    
-				console.log("Valor hideAlert: ", $scope.hideAlert);
-			}
-
-			function limpiarCampos(){
-				stateNew = true;
-				$scope.selectMessageFormat.messageFormatId = "";
-				$scope.selectMessageFormat.messageFormatDesc = "";
-				$scope.selectMessageFormat.transformerConfigFile = "";
-				$scope.selectMessageFormat.routerConfigFile = "";
-				$scope.selectMessageFormat.transformerStruct = "";
-			}
-
-			//Botones de la tabla
 			$scope.editar = function(valRow){
 				console.log("Inicio de disponibilidad para editar...:", valRow);
 				closeAlert();
@@ -164,14 +172,17 @@ angular.module('app.controllers')
 			
 			$scope.quitar = function(valId){
 				console.log("Inicio de proceso eliminar...:" , valId);
-				var estado = true;
-				
-				if(estado){
-					console.log("Enviando eliminacion de registro...");
-					deleteData(valId);
-					limpiarCampos();
-				}
+				jConfirm('¿Realmente desea eliminar el registro?', 'Control de proceso', function(r) {
+				    if(r){
+						console.log("Enviando eliminacion de registro...");
+						deleteData(valId);
+					}else{
+						console.log("No se desea eliminar el registro...");
+					}
+				});
 			};
+//***********Fin de Botones de proceso, controles
+
 		}
 	]);
 

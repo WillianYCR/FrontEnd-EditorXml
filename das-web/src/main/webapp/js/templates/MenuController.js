@@ -21,10 +21,10 @@ angular.module('app.controllers')
 		$state.go('driver');
 	};
 	$scope.viewBalanceador = function(){
-		$state.go('login');
+		$state.go('balancer');
 	};
 	$scope.viewRouter = function(){
-		$state.go('login');
+		$state.go('route');
 	};
 	$scope.viewServicio = function(){
 		$state.go('login');
