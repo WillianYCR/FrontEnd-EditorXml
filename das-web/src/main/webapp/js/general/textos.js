@@ -92,12 +92,12 @@ angular.module('app.textos', [])
 	//******Descripcion de los atributos
 	id: 'Codigo:',
 	//******Descripcion de los Tag
-	algorithm: 'Algoritmo: ',
-	workerThreadsCount: 'Modo de operacion :',
+	algorithm: 'Algoritmo:',
+	workerThreadsCount: 'Modo operacion:',
 	//Tabla de balanceadores
 	idTbl: 'Codigo',
 	algorithmTbl: 'Algoritmo',
-	workerThreadsCountTbl: 'N° Hilos ',
+	workerThreadsCountTbl: 'N° Hilos',
 	opcionActionTbl: 'Accion'
 })
 .constant('routeTexto', {

@@ -215,6 +215,7 @@ angular.module('app.controllers')
 			    console.log("lista AdminQueue: ", $scope.selectQueue);
 			};
 //***********Fin de Botones de proceso, controles
+			
 
 		}
 	]);

@@ -1,49 +1,60 @@
 <div class="container">
 	<div>
-		<form class="form-group">
+		<form class="form-group" name="formulario">
 			<h4>{{routeTexto.titulo}}</h4>
 			<div class="panel panel-default" style="width: 500px">
 				<div class="panel-body">
+
+					<span  class="glyphicon" style="color: red;"	
+							ng-show="!formulario.$pristine && 
+							formulario.routeId.$error.required">*</span>
 					<label>{{routeTexto.routeId}}</label> 
-					<input type="text" id="routeId" class="form-control" style="width: 150px" 
-						ng-model="selectRoute.routeId" required autofocus> 
+					<input type="text" style="width: 150px"  name="routeId" 
+							class="form-control" placeholder="Codigo ..."
+							ng-model="selectRoute.routeId" required> 
+
+					<span  class="glyphicon" style="color: red;"	
+							ng-show="!formulario.$pristine && 
+							formulario.routeDesc.$error.required">*</span>
 					<label>{{routeTexto.routeDesc}}</label>
-					<input type="text" id="routeDesc" class="form-control" style="width: 300px" required autofocus
-						ng-model="selectRoute.routeDesc" >
+					<input type="text" style="width: 300px" name="routeDesc" 
+							class="form-control"  
+							ng-model="selectRoute.routeDesc" required>
 
-					<!--Lista de los formatos soportados para las colas-->
+					<span  class="glyphicon" style="color: red;"	
+							ng-show="!formulario.$pristine && 
+							formulario.balancerId.$error.required">*</span>
 	                <label>{{routeTexto.balancerId}}</label>
-					<div class="row" style="width: 500px">
-						<div class="col-md-5">
-			                <select class="form-control" style="width: 160px" id="formateador" ng-model="selectRoute.balancerId">
-							    <option ng-repeat="myFormat in listBalancer" value="{{myFormat.id}}">
-							    	{{myFormat.id}}
-							    </option>
-				            </select>
-						</div>
-						<div class="col-md-7"></div>
-					</div>
-
+	                <select class="form-control" style="width: 160px" name="balancerId" 
+	                		ng-model="selectRoute.balancerId" required>
+					    <option ng-repeat="myFormat in listBalancer" value="{{myFormat.id}}">
+					    	{{myFormat.id}}
+					    </option>
+		            </select>
+						
+					<span  class="glyphicon" style="color: red;"	
+							ng-show="!formulario.$pristine && 
+							formulario.status.$error.required">*</span>
 					<label>{{routeTexto.status}}</label>
-					<div class="row" style="width: 500px">
-						<div class="col-md-5">
-			                <select class="form-control" 
-			                	style="width: 160px" id="status" ng-model="selectRoute.status">
-							    <option ng-repeat="myStatus in constantStatus" value="{{myStatus.status}}">
-							    	{{myStatus.status}}
-							    </option>
-				            </select>
-						</div>
-						<div class="col-md-7"></div>
-					</div>
+	                <select class="form-control" style="width: 160px" name="status" 
+	                		ng-model="selectRoute.status" required>
+					    <option ng-repeat="myStatus in constantStatus" value="{{myStatus.status}}">
+					    	{{myStatus.status}}
+					    </option>
+		            </select>
 					
 					<hr width="100%" size="14"/>
 					
-					<button class="btn btn-primary glyphicon glyphicon-file" ng-click="nuevo()"></button>
-					<button class="btn btn-primary glyphicon glyphicon-floppy-disk" ng-click="grabar(selectRoute)"></button>
-					<button class="btn btn-primary glyphicon glyphicon-refresh" ng-click="refrescar()"></button>
+					<button class="btn btn-primary glyphicon glyphicon-file" ng-click="nuevo()">
+					</button>
+					<button class="btn btn-primary glyphicon glyphicon-floppy-disk" 
+							ng-click="grabar(selectRoute)" ng-disabled="!formulario.$valid">
+					</button>
+					<button class="btn btn-primary glyphicon glyphicon-refresh" ng-click="refrescar()">
+					</button>
 				</div>
 			</div>
+
 			<div class="row" ng-hide="hideAlert">
 				<div class="col-md-5">
 					<div class="alert alert-{{responseRestTag}}">

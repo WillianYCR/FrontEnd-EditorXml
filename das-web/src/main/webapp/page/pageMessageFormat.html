@@ -1,33 +1,65 @@
 <div class="container">
 	<div>
-		<form class="form-group">
+		<form class="form-group" name="formulario">
 			<h4>{{formatTexto.titulo}}</h4>
 			<div class="panel panel-default" style="width: 650px">
 				<div class="panel-body">
-					<label>{{formatTexto.messageFormatId}}</label> 
-					<input type="text" id="messageFormatId" class="form-control" style="width: 150px" 
-						ng-model="selectMessageFormat.messageFormatId" required autofocus> 
+ 
+					<span  class="glyphicon" style="color: red;"	
+							ng-show="!formulario.$pristine && 
+							formulario.messageFormatId.$error.required">*</span>
+					<label>{{formatTexto.messageFormatId}}</label>
+					<input type="text" style="width: 150px" name="messageFormatId" 
+						   	class="form-control" placeholder="Codigo ..."
+							ng-model="selectMessageFormat.messageFormatId" required>
+					
+					<span  class="glyphicon" style="color: red;"	
+							ng-show="!formulario.$pristine && 
+							formulario.messageFormatDesc.$error.required">*</span>
 					<label>{{formatTexto.messageFormatDesc}}</label>
-					<input type="text" id="messageFormatDesc" class="form-control" style="width: 300px" required autofocus
-						ng-model="selectMessageFormat.messageFormatDesc" > 
+					<input type="text" style="width: 300px" name="messageFormatDesc" 
+							class="form-control"  
+							ng-model="selectMessageFormat.messageFormatDesc" required> 
+					
+					<span  class="glyphicon" style="color: red;"	
+							ng-show="!formulario.$pristine && 
+							formulario.transformerConfigFile.$error.required">*</span>
 					<label>{{formatTexto.transformerConfigFile}}</label>
-					<input type="text" id="transformerConfigFile" class="form-control" style="width: 300px"
-						ng-model="selectMessageFormat.transformerConfigFile" required autofocus> 
+					<input type="text" style="width: 300px" name="transformerConfigFile" 
+							class="form-control" 
+							ng-model="selectMessageFormat.transformerConfigFile" required> 
+					
+					<span  class="glyphicon" style="color: red;"	
+							ng-show="!formulario.$pristine && 
+							formulario.routerConfigFile.$error.required">*</span>
 					<label>{{formatTexto.routerConfigFile}}</label>
-					<input type="text" id="routerConfigFile" class="form-control" style="width: 300px"
-						ng-model="selectMessageFormat.routerConfigFile" required autofocus> 
+					<input type="text" style="width: 300px" name="routerConfigFile" 
+							class="form-control" 
+							ng-model="selectMessageFormat.routerConfigFile" required> 
+					
+					<span  class="glyphicon" style="color: red;"	
+							ng-show="!formulario.$pristine && 
+							formulario.transformerStruct.$error.required">*</span>
 					<label>{{formatTexto.transformerStruct}}</label>
-
-					<select class="form-control" style="width: 150px" id="transformador" ng-model="selectMessageFormat.transformerStruct">
-						<option ng-repeat="valueType in listTypeFormater">{{valueType.transformerStruct}}</option>
+					<select class="form-control" style="width: 150px" name="transformerStruct" 
+							ng-model="selectMessageFormat.transformerStruct" required>
+						<option ng-repeat="valueType in listTypeFormater">
+							{{valueType.transformerStruct}}
+						</option>
 					</select>
+
 					<hr width="100%" size="14"/>
 					
-					<button class="btn btn-primary glyphicon glyphicon-file" ng-click="nuevo()"></button>
-					<button class="btn btn-primary glyphicon glyphicon-floppy-disk" ng-click="grabar(selectMessageFormat)"></button>
-					<button class="btn btn-primary glyphicon glyphicon-refresh" ng-click="refrescar()"></button>
+					<button class="btn btn-primary glyphicon glyphicon-file" ng-click="nuevo()">
+					</button>
+					<button class="btn btn-primary glyphicon glyphicon-floppy-disk" 
+							ng-click="grabar(selectMessageFormat)" ng-disabled="!formulario.$valid">
+					</button>
+					<button class="btn btn-primary glyphicon glyphicon-refresh" ng-click="refrescar()">
+					</button>
 				</div>
 			</div>
+
 			<div class="row" ng-hide="hideAlert">
 				<div class="col-md-7">
 					<div class="alert alert-{{responseRestTag}}">

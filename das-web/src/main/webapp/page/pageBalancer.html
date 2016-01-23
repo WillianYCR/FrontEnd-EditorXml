@@ -1,23 +1,43 @@
 <div class="container">
 	<div>
-		<form class="form-group">
+		<form class="form-group" name="formulario">
 			<h4>{{balancerTexto.titulo}}</h4>
 			<div class="panel panel-default" style="width: 500px">
 				<div class="panel-body">
+
+					<span  class="glyphicon" style="color: red;"	
+							ng-show="!formulario.$pristine && 
+							formulario.id.$error.required">*</span>
 					<label>{{balancerTexto.id}}</label> 
-					<input type="text" id="id" class="form-control" style="width: 150px" 
-						ng-model="selectBalancer.id" required autofocus> 
+					<input type="text" style="width: 150px" name="id" 
+							class="form-control"  placeholder="Codigo ..."
+							ng-model="selectBalancer.id" required>
+
+					<span  class="glyphicon" style="color: red;"	
+							ng-show="!formulario.$pristine && 
+							formulario.algorithm.$error.required">*</span>
 					<label>{{balancerTexto.algorithm}}</label>
-					<input type="text" id="algorithm" class="form-control" style="width: 300px" required autofocus
-						ng-model="selectBalancer.algorithm" > 
+					<input type="text" style="width: 300px" name="algorithm" 
+							class="form-control" 
+							ng-model="selectBalancer.algorithm" required>
+
+					<span  class="glyphicon" style="color: red;"	
+							ng-show="!formulario.$pristine && 
+							formulario.workerThreadsCount.$error.required">*</span>
 					<label>{{balancerTexto.workerThreadsCount}}</label>
-					<input type="text" id="workerThreadsCount" class="form-control" style="width: 300px"
-						ng-model="selectBalancer.workerThreadsCount" required autofocus> 
+					<input type="text" style="width: 150px" name="workerThreadsCount" 
+							class="form-control" 
+							ng-model="selectBalancer.workerThreadsCount" required>
+
 					<hr width="100%" size="14"/>
 					
-					<button class="btn btn-primary glyphicon glyphicon-file" ng-click="nuevo()"></button>
-					<button class="btn btn-primary glyphicon glyphicon-floppy-disk" ng-click="grabar(selectBalancer)"></button>
-					<button class="btn btn-primary glyphicon glyphicon-refresh" ng-click="refrescar()"></button>
+					<button class="btn btn-primary glyphicon glyphicon-file" ng-click="nuevo()">
+					</button>
+					<button class="btn btn-primary glyphicon glyphicon-floppy-disk" 
+							ng-click="grabar(selectBalancer)" ng-disabled="!formulario.$valid">
+					</button>
+					<button class="btn btn-primary glyphicon glyphicon-refresh" ng-click="refrescar()">
+					</button>
 				</div>
 			</div>
 			<div class="row" ng-hide="hideAlert">
