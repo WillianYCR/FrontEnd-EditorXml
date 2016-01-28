@@ -23,7 +23,7 @@ angular.module('app.controllers')
 			readDataBalancer();
 //***********Fin de proceso por default
 
-//***********Inicio Consulta servicio rest - "Balancer" y "Route"
+//***********Inicio Consulta servicio rest
 			function readData() {
 				console.log("Procesando SELECT...");
 				$http.get($queryRuta.urlRoute)
@@ -88,7 +88,7 @@ angular.module('app.controllers')
 						responseData(data);
 					});
 			}
-//***********Inicio Consulta servicio rest - "Balancer" y "Route"
+//***********Inicio Consulta servicio rest
 
 //***********Inicio de metodos Fijos para mantener actualizado la informacion
 			function refreshData (){

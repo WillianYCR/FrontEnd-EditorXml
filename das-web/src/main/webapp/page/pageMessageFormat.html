@@ -2,14 +2,14 @@
 	<div>
 		<form class="form-group" name="formulario">
 			<h4>{{formatTexto.titulo}}</h4>
-			<div class="panel panel-default" style="width: 650px">
+			<div class="panel panel-default">
 				<div class="panel-body">
  
 					<span  class="glyphicon" style="color: red;"	
 							ng-show="!formulario.$pristine && 
 							formulario.messageFormatId.$error.required">*</span>
 					<label>{{formatTexto.messageFormatId}}</label>
-					<input type="text" style="width: 150px" name="messageFormatId" 
+					<input type="text" style="width: 150px" name="messageFormatId" id="formGroupInputSmall"
 						   	class="form-control" placeholder="Codigo ..."
 							ng-model="selectMessageFormat.messageFormatId" required>
 					
@@ -17,37 +17,45 @@
 							ng-show="!formulario.$pristine && 
 							formulario.messageFormatDesc.$error.required">*</span>
 					<label>{{formatTexto.messageFormatDesc}}</label>
-					<input type="text" style="width: 300px" name="messageFormatDesc" 
+					<input type="text" style="width: 350px" name="messageFormatDesc" 
 							class="form-control"  
 							ng-model="selectMessageFormat.messageFormatDesc" required> 
 					
-					<span  class="glyphicon" style="color: red;"	
+					<div class="row" style="width:800px">
+
+						<div class="col-md-7">
+							<span  class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.transformerConfigFile.$error.required">*</span>
+							<label>{{formatTexto.transformerConfigFile}}</label>
+							<input type="text" style="width: 350px" name="transformerConfigFile" 
+									class="form-control" 
+									ng-model="selectMessageFormat.transformerConfigFile" required> 
+						</div>
+
+						<div class="col-md-5">
+							<span  class="glyphicon" style="color: red;"	
 							ng-show="!formulario.$pristine && 
-							formulario.transformerConfigFile.$error.required">*</span>
-					<label>{{formatTexto.transformerConfigFile}}</label>
-					<input type="text" style="width: 300px" name="transformerConfigFile" 
-							class="form-control" 
-							ng-model="selectMessageFormat.transformerConfigFile" required> 
-					
+							formulario.transformerStruct.$error.required">*</span>
+							<label>{{formatTexto.transformerStruct}}</label>
+							<select class="form-control" style="width: 150px" name="transformerStruct" 
+									ng-model="selectMessageFormat.transformerStruct" required>
+								<option ng-repeat="valueType in listTypeFormater">
+									{{valueType.transformerStruct}}
+								</option>
+							</select>
+						</div>
+
+					</div>
+
 					<span  class="glyphicon" style="color: red;"	
 							ng-show="!formulario.$pristine && 
 							formulario.routerConfigFile.$error.required">*</span>
 					<label>{{formatTexto.routerConfigFile}}</label>
-					<input type="text" style="width: 300px" name="routerConfigFile" 
+					<input type="text" style="width: 350px" name="routerConfigFile" 
 							class="form-control" 
 							ng-model="selectMessageFormat.routerConfigFile" required> 
 					
-					<span  class="glyphicon" style="color: red;"	
-							ng-show="!formulario.$pristine && 
-							formulario.transformerStruct.$error.required">*</span>
-					<label>{{formatTexto.transformerStruct}}</label>
-					<select class="form-control" style="width: 150px" name="transformerStruct" 
-							ng-model="selectMessageFormat.transformerStruct" required>
-						<option ng-repeat="valueType in listTypeFormater">
-							{{valueType.transformerStruct}}
-						</option>
-					</select>
-
 					<hr width="100%" size="14"/>
 					
 					<button class="btn btn-primary glyphicon glyphicon-file" ng-click="nuevo()">
@@ -58,41 +66,46 @@
 					<button class="btn btn-primary glyphicon glyphicon-refresh" ng-click="refrescar()">
 					</button>
 				</div>
-			</div>
+			
 
-			<div class="row" ng-hide="hideAlert">
-				<div class="col-md-7">
-					<div class="alert alert-{{responseRestTag}}">
-					  <strong>Respuesta :</strong> {{responseRest}}
+				<div class="row" ng-hide="hideAlert">
+					<div class="col-md-7">
+						<div class="alert alert-{{responseRestTag}}">
+						  <strong>Respuesta :</strong> {{responseRest}}
+						</div>
 					</div>
 				</div>
-			</div>
 
-			<table class="table" cellspacing="0" style="width: 650px">
-			    <thead>
-			     	<tr>
-				        <th style="width: 100px">{{formatTexto.messageFormatIdTbl}}</th>
-				        <th style="width: 300px">{{formatTexto.messageFormatDescTbl}}</th>
-				        <th style="width: 150px">{{formatTexto.transformerConfigFileTbl}}</th>
-				        <th style="width: 150px">{{formatTexto.routerConfigFileTbl}}</th>
-				        <th style="width: 100px">{{formatTexto.opcionActionTbl}}</th>
-			      	</tr>
-			    </thead>
-			    <tbody>
-			      	<tr class="success" ng-repeat="valueRow in listMessageFormat">
-				        <td>{{valueRow.messageFormatId}}</td>
-				        <td>{{valueRow.messageFormatDesc}}</td>
-				        <td>{{valueRow.transformerConfigFile}}</td>
-				        <td>{{valueRow.routerConfigFile}}</td>
-				        <td >
-				        	<button class="btn btn-success btn-xs glyphicon glyphicon-pencil" 
-				        			ng-click="editar(valueRow)"></button>
-				        	<button class="btn btn-danger btn-xs glyphicon glyphicon-trash" 
-				        			ng-click="quitar(valueRow.messageFormatId)"></button>
-				        </td>
-			      	</tr>
-			    </tbody>
-			</table>
+				<div class"table-responsive">
+					<table class="table table-striped table-bordered table-hover table-condensed" 
+							>
+					    <thead>
+					     	<tr class="success">
+					     		<th align="right" style="width: 30px">Num</th>
+						        <th style="width: 100px">{{formatTexto.messageFormatIdTbl}}</th>
+						        <th style="width: 250px">{{formatTexto.messageFormatDescTbl}}</th>
+						        <th style="width: 220px">{{formatTexto.transformerConfigFileTbl}}</th>
+						        <th style="width: 100px">{{formatTexto.opcionActionTbl}}</th>
+					      	</tr>
+					    </thead>
+					    <tbody>
+					      	<tr ng-repeat="valueRow in listMessageFormat">
+					      		<td>{{$index + 1}}</td>
+						        <td>{{valueRow.messageFormatId}}</td>
+						        <td>{{valueRow.messageFormatDesc}}</td>
+						        <td>{{valueRow.routerConfigFile}}</td>
+						        <td >
+						        	<button class="btn btn-success btn-xs glyphicon glyphicon-pencil" 
+						        			ng-click="editar(valueRow)"></button>
+						        	<button class="btn btn-danger btn-xs glyphicon glyphicon-trash" 
+						        			ng-click="quitar(valueRow.messageFormatId)"></button>
+						        </td>
+					      	</tr>
+					    </tbody>
+					</table>
+				</div>
+
+			</div>
 		</form>
 	</div>
 </div>

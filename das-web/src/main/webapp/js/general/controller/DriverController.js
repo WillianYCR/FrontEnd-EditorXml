@@ -40,7 +40,7 @@ angular.module('app.controllers')
 			readDataQueue();
 //**********Fin de proceso por default
 			
-//**********Inicio Consulta servicio rest - "Driver"
+//**********Inicio Consulta servicio rest
 			function readData() {
 				console.log("Procesando SELECT...");
 				$http.get($queryRuta.urlDriver)
@@ -104,7 +104,7 @@ angular.module('app.controllers')
 						responseData(data);
 					});
 			}
-//**********Inicio Consulta servicio rest - "Driver"
+//**********Inicio Consulta servicio rest
 
 //**********Inicio de metodos Fijos para mantener actualizado la informacion
 			function refreshData (){

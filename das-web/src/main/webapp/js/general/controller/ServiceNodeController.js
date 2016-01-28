@@ -19,7 +19,7 @@ angular.module('app.controllers')
 			readData();
 //***********Fin de proceso por default
 
-//***********Inicio Consulta servicio rest - "serviceNode"
+//***********Inicio Consulta servicio rest
 			function readData() {
 				console.log("Procesando SELECT...");
 				$http.get($queryRuta.urlServiceNode)
@@ -72,7 +72,7 @@ angular.module('app.controllers')
 						responseData(data);
 					});
 			}
-//***********Inicio Consulta servicio rest - "serviceNode"
+//***********Inicio Consulta servicio rest
 
 //***********Inicio de metodos Fijos para mantener actualizado la informacion
 			function refreshData (){

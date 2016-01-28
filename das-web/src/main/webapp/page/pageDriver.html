@@ -2,12 +2,12 @@
 	<div>
 		<form class="form-group" name="formulario">
 			<h4>{{driverTexto.titulo}}</h4>
-			<div class="panel panel-default" style="width: 700px">
+			<div class="panel panel-default" style="width: 800px">
 				<div class="panel-body">
 				
-					<div class="row" style="width:700px">
+					<div class="row" style="width:800px">
 						
-						<div class="col-md-4">
+						<div class="col-md-3">
 							<span class="glyphicon" style="color: red;"	
 									ng-show="!formulario.$pristine && 
 									formulario.driverId.$error.required">*</span>
@@ -17,12 +17,12 @@
 								 	ng-model="selectDriver.driverId" required> 
 						</div>
 
-						<div class="col-md-4">
+						<div class="col-md-3">
 							<span class="glyphicon" style="color: red;"	
 									ng-show="!formulario.$pristine && 
 									formulario.adminQueueId.$error.required">*</span>
 							<label>{{driverTexto.adminQueueId}}</label> 
-							<select class="form-control" style="width: 180px" name="adminQueueId" 			
+							<select class="form-control" style="width: 160px" name="adminQueueId" 			
 									ng-model="selectDriver.adminQueueId" required>
 							    <option ng-repeat="myQueue in listAdminQueue" 
 							    		value="{{myQueue.adminQueueId}}">
@@ -30,12 +30,12 @@
 							    </option>
 				            </select>
 						</div>
-						<div class="col-md-4">
+						<div class="col-md-3">
 							<span class="glyphicon" style="color: red;"	
 									ng-show="!formulario.$pristine && 
 									formulario.type.$error.required">*</span>
 							<label>{{driverTexto.type}}</label>
-							<select class="form-control" style="width: 180px" name="type" 
+							<select class="form-control" style="width: 160px" name="type" 
 									ng-model="selectDriver.type" required>
 							    <option ng-repeat="myStatus in statusType" value="{{myStatus.type}}">
 							    	{{myStatus.type}}
@@ -43,11 +43,12 @@
 				            </select>
 						</div>
 						
+						<div class="col-md-3"/>
 					</div>
 
-					<div class="row" style="width:700px">
+					<div class="row" style="width:800px">
 
-						<div class="col-md-4">
+						<div class="col-md-3">
 							<span class="glyphicon" style="color: red;"	
 									ng-show="!formulario.$pristine && 
 									formulario.timeOutConnect.$error.required">*</span>
@@ -57,7 +58,7 @@
 								 	ng-model="selectDriver.timeOutConnect" required> 
 						</div>
 
-						<div class="col-md-4">
+						<div class="col-md-3">
 							<span class="glyphicon" style="color: red;"	
 									ng-show="!formulario.$pristine && 
 									formulario.timeOutRead.$error.required">*</span>
@@ -67,7 +68,7 @@
 								 	ng-model="selectDriver.timeOutRead" required> 
 						</div>
 
-						<div class="col-md-4">
+						<div class="col-md-3">
 							<span class="glyphicon" style="color: red;"	
 									ng-show="!formulario.$pristine && 
 									formulario.retries.$error.required">*</span>
@@ -77,11 +78,7 @@
 								 	ng-model="selectDriver.retries" required> 
 						</div>
 
-					</div>
-
-					<div class="row" style="width:700px">
-
-						<div class="col-md-4">
+						<div class="col-md-3">
 							<span class="glyphicon" style="color: red;"	
 									ng-show="!formulario.$pristine && 
 									formulario.timeOutQueueRead.$error.required">*</span>
@@ -90,26 +87,24 @@
 									class="form-control"
 								 	ng-model="selectDriver.timeOutQueueRead" required> 
 						</div>
-						<div class="col-md-4"></div>
-						<div class="col-md-4"></div>
 
 					</div>
 
 					<hr width="100%" size="18"/>
 
-					<div class="row" style="width:700px">
+					<div class="row" style="width:800px">
 
-						<div class="col-md-4">
+						<div class="col-md-6">
 							<span class="glyphicon" style="color: red;"	
 									ng-show="!formulario.$pristine && 
 									formulario.name.$error.required">*</span>
 							<label>{{driverTexto.name}}</label>
-							<input type="text" style="width: 200px" name="name" 
+							<input type="text" style="width: 350px" name="name" 
 									class="form-control"
 								 	ng-model="selectDriver.name" required> 
 						</div>
 
-						<div class="col-md-4">
+						<div class="col-md-3">
 							<span class="glyphicon" style="color: red;"	
 									ng-show="!formulario.$pristine && 
 									formulario.port.$error.required">*</span>
@@ -119,36 +114,36 @@
 								 	ng-model="selectDriver.port" required> 
 						</div>
 
-						<div class="col-md-4">
+						<div class="col-md-3">
 							<span class="glyphicon" style="color: red;"	
 									ng-show="!formulario.$pristine && 
 									formulario.maxConcurrentConnections.$error.required">*</span>
 							<label>{{driverTexto.maxConcurrentConnections}}</label>
-							<input type="text" style="width: 180px" name="maxConcurrentConnections" 
+							<input type="text" style="width: 150px" name="maxConcurrentConnections" 
 									class="form-control"
 								 	ng-model="selectDriver.maxConcurrentConnections" required> 
 						</div>
 
 					</div>
 
-					<div class="row" style="width:700px">
+					<div class="row" style="width:800px">
 
-						<div class="col-md-4">
+						<div class="col-md-3">
 							<span class="glyphicon" style="color: red;"	
 									ng-show="!formulario.$pristine && 
 									formulario.forwardProcess.$error.required">*</span>
 							<label>{{driverTexto.forwardProcess}}</label>
-							<input type="text" style="width: 150px" name="forwardProcess" 
+							<input type="text" style="width: 180px" name="forwardProcess" 
 									class="form-control"
 								 	ng-model="selectDriver.forwardProcess" required> 
 						</div>
 
-						<div class="col-md-4">
+						<div class="col-md-3">
 							<span class="glyphicon" style="color: red;"	
 									ng-show="!formulario.$pristine && 
 									formulario.validaIp.$error.required">*</span>
 							<label>{{driverTexto.validaIp}}</label>
-							<select class="form-control" style="width: 180px" name="validaIp" 
+							<select class="form-control" style="width: 150px" name="validaIp" 
 									ng-model="selectDriver.validaIp" required>
 							    <option ng-repeat="myStatus in statusValidarIp" value="{{myStatus.status}}">
 							    	{{myStatus.status}}
@@ -156,18 +151,20 @@
 				            </select>
 						</div>
 
-						<div class="col-md-4">
+						<div class="col-md-3">
 							<span class="glyphicon" style="color: red;"	
 									ng-show="!formulario.$pristine && 
 									formulario.concurrentUserSupport.$error.required">*</span>
 							<label>{{driverTexto.concurrentUserSupport}}</label>
-							<select class="form-control" style="width: 180px" name="concurrentUserSupport" 
+							<select class="form-control" style="width: 150px" name="concurrentUserSupport" 
 									ng-model="selectDriver.concurrentUserSupport" required>
 							    <option ng-repeat="myStatus in statusPermiso" value="{{myStatus.status}}">
 							    	{{myStatus.status}}
 							    </option>
 				            </select>
 						</div>
+
+						<div class="col-md-3"/>
 
 					</div>
 					
@@ -220,23 +217,23 @@
 			<table class="table" cellspacing="0" style="width: 800px">
 			    <thead>
 			     	<tr>
-				        <th style="width: 100px">{{driverTexto.driverIdTbl}}</th>
-				        <th style="width: 100px">{{driverTexto.adminQueueIdTbl}}</th>
+			     		<th align="right" style="width: 30px">Num</th>
+				        <th style="width: 120px">{{driverTexto.driverIdTbl}}</th>
+				        <th style="width: 150px">{{driverTexto.adminQueueIdTbl}}</th>
 				        <th style="width: 100px">{{driverTexto.typeTbl}}</th>
-				        <th style="width: 100px">{{driverTexto.nameTbl}}</th>
-				        <th style="width: 100px">{{driverTexto.portTbl}}</th>
-				        <th style="width: 100px">{{driverTexto.forwardProcessTbl}}</th>
+				        <th style="width: 120px">{{driverTexto.nameTbl}}</th>
+				        <th style="width: 80px">{{driverTexto.portTbl}}</th>
 				        <th style="width: 100px">{{driverTexto.opcionActionTbl}}</th>
 			      	</tr>
 			    </thead>
 			    <tbody>
 			      	<tr class="success" ng-repeat="valueRow in driverGeneral.drivers">
+			      		<td>{{$index + 1}}</td>
 				        <td>{{valueRow.driverId}}</td>
 				        <td>{{valueRow.adminQueueId}}</td>
 				        <td>{{valueRow.type}}</td>
 				        <td>{{valueRow.name}}</td>
 				        <td>{{valueRow.port}}</td>
-				        <td>{{valueRow.forwardProcess}}</td>
 				        <td >
 				        	<button class="btn btn-success btn-xs glyphicon glyphicon-pencil" 
 				        			ng-click="editar(valueRow)"></button>

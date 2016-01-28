@@ -16,14 +16,14 @@ angular.module('app.controllers')
 			var stateNew = true; //Definir sie el proceso es un nuevo registo o una actualizacion
 								 //(true: registro nuevo, false: registro a editar)
 
-			$scope.listTypeFormater = []; //Valor fijo para el combo sobre los tipos de formatos: evaluar caso
-			$scope.listTypeFormater = [{"transformerStruct":"ISO8583"},{"transformerStruct":"PLAIN"}];
+			//Valor fijo para el combo sobre los tipos de formatos: evaluar caso
+			$scope.listTypeFormater = [{"transformerStruct":'ISO8583'},{"transformerStruct":'PLAIN'}];
 
 //***********Inicio de proceso por default
 			readData();
 //***********Fin de proceso por default
 
-//***********Inicio Consulta servicio rest - "MessageFormat"
+//***********Inicio Consulta servicio rest
 			function readData() {
 				console.log("Procesando SELECT...");
 				$http.get($queryRuta.urlMessageFormat)
@@ -76,7 +76,7 @@ angular.module('app.controllers')
 						responseData(data);
 					});
 			}
-//***********Inicio Consulta servicio rest - "MessageFormat"
+//***********Inicio Consulta servicio rest
 
 //***********Inicio de metodos Fijos para mantener actualizado la informacion
 			function refreshData (){

@@ -1,20 +1,21 @@
 angular.module('app.controllers')
-.controller('adminQueueController',
-	['$scope', '$http', '$state',  'queryRuta', 'queueTxt',
-		function($scope,  $http, $state, $queryRuta, queueTxt){
+.controller('profileController',
+	['$scope', '$http', '$state',  'queryRuta', 'profileTexto',
+		function($scope,  $http, $state, $queryRuta, profileTexto){
 	// establece el texto en la applicacion
-			$scope.queueTxt = queueTxt;
+			$scope.profileTexto = profileTexto;
 			//variables de inicio
-			$scope.adminQueueGeneral = {}; //almacena toda la data del servicio del objeto "AdminQueues"
-			$scope.selectQueue = { messageType:{  
-												supportedMessageFormats:
-													{messageFormatId:[]}
-											}
-								 }; //es parte No dependeiente de la data general(AdminQueues.adminQueues), 
-									 //es usado para mostrar la data y ser enviado paraguardar
+			$scope.profileGeneral = {}; //almacena toda la data del servicio del objeto "profiles"
+			$scope.selectProfile = { profileDrivers:{driverIds:[]},
+									authServices:{serviceIds:[]}
+								 }; //es parte No dependeiente de la data general(profiles), 
+									 //es usado para mostrar la data y ser enviado para guardar
 			
-			$scope.listMessageFormat = []; //Lista de la data servicio del objetoMEssageFormat
-			$scope.selectionMessage = [];//Valores seleccionados de los formatos
+			$scope.listDriver = []; //Lista de la data servicio del objeto Driver
+			$scope.selectionDriver = [];//Valores seleccionados de Driver
+
+			$scope.listService = []; //Lista de la data servicio del objeto Service
+			$scope.selectionService = [];//Valores seleccionados de Service
 
 			$scope.responseRest = ""; //Mensaje de la respuesta generada por las consultas y validaciones
 			$scope.responseRestTag = ""; //Estilo de la respuesta generada por las consultas y validaciones
@@ -24,28 +25,41 @@ angular.module('app.controllers')
 
 //***********Inicio de proceso por default
 			readData();
-			readDataFormat();
+			readDataDriver();
+			readDataService();
 //***********Fin de proceso por default
 
 //***********Inicio Consulta servicio rest
 			function readData() {
 				console.log("Procesando SELECT...");
-				$http.get($queryRuta.urlAdminQueue)
+				$http.get($queryRuta.urlProfile)
 					.success(function(data){
-						console.log("N° registros de colas:", data.adminQueues.length);
-						$scope.adminQueueGeneral = data;
+						console.log("N° registros de Profile:", data.profiles.length);
+						$scope.profileGeneral = data.profiles;
 					})
 					.error(function(data, status) {
 						console.log(status);
 						responseData(data);
 					});
 			}
-			function readDataFormat() {
+			function readDataDriver() {
 				console.log("Procesando SELECT...");
-				$http.get($queryRuta.urlMessageFormat)
+				$http.get($queryRuta.urlDriver)
 					.success(function(data){
-						console.log("N° registros formateos:", data.messageFormats.length);
-						$scope.listMessageFormat = data.messageFormats;
+						console.log("N° registros drivers:", data.drivers.length);
+						$scope.listDriver = data.drivers;
+					})
+					.error(function(data, status) {
+						console.log(status);
+						responseData(data);
+					});
+			}
+			function readDataService() {
+				console.log("Procesando SELECT...");
+				$http.get($queryRuta.urlService)
+					.success(function(data){
+						console.log("N° registros service:", data.services.length);
+						$scope.listService = data.services;
 					})
 					.error(function(data, status) {
 						console.log(status);
@@ -55,7 +69,7 @@ angular.module('app.controllers')
 
 			function saveData(parData) {
 				console.log("Procesando SAVE...:" , parData);
-				$http.post($queryRuta.urlAdminQueue, parData)
+				$http.post($queryRuta.urlProfile, parData)
 					.success(function(data){
 						responseData(data);
 						refreshData();
@@ -68,7 +82,7 @@ angular.module('app.controllers')
 
 			function updateData(parData) {
 				console.log("Procesando UPDATE...:" , parData);
-				$http.put($queryRuta.urlAdminQueue, parData)
+				$http.put($queryRuta.urlProfile, parData)
 					.success(function(data){
 						responseData(data);
 						refreshData();
@@ -81,7 +95,7 @@ angular.module('app.controllers')
 
 			function deleteData(parId) {
 				console.log("Procesando DELETE...", parId);
-				$http.delete($queryRuta.urlAdminQueue + '/' + parId).
+				$http.delete($queryRuta.urlProfile + '/' + parId).
 					success(function(data){
 						responseData(data);
 						refreshData();
@@ -97,7 +111,8 @@ angular.module('app.controllers')
 			function refreshData (){
 				console.log("Refrescando la data...");
 				readData();	
-				readDataFormat();
+				readDataDriver();
+				readDataService();
 				limpiarCampos();			
 			}
 
@@ -132,11 +147,10 @@ angular.module('app.controllers')
 
 			function limpiarCampos(){
 				stateNew = true;
-				$scope.selectQueue.adminQueueId = "";
-				$scope.selectQueue.workerThreadsCount = "";
-				$scope.selectQueue.messageType.messageTypeId = "";
-				$scope.selectQueue.messageType.messageTypeDesc = "";
-				$scope.selectionMessage = [];
+				$scope.selectProfile.profileId = "";
+				$scope.selectProfile.profileDesc = "";
+				$scope.selectionDriver = [];
+				$scope.selectionService = [];
 			}
 //***********Fin de metodos Fijos para mantener actualizado la informacion
 			
@@ -149,18 +163,19 @@ angular.module('app.controllers')
 			$scope.refrescar = function(){
 				stateNew = true;
 				readData();
-				readDataFormat();
+				readDataDriver();
+				readDataService();
 				closeAlert();
 			};
 
 			$scope.grabar = function(dataSave){
+				$scope.selectProfile.profileDrivers.driverIds = $scope.selectionDriver;
+				$scope.selectProfile.authServices.serviceIds = $scope.selectionService;
 				console.log("Inicio de evento grabar...:" , dataSave);
-				$scope.selectQueue.messageType.supportedMessageFormats.messageFormatId = $scope.selectionMessage;
-				console.log("Inicio de evento grabar Cargado...:" , dataSave);
 				var existId = false;
-				angular.forEach($scope.adminQueueGeneral.adminQueues, function(value, key){
-				    if(value.adminQueueId == dataSave.adminQueueId){
-				    	console.log("Validando identificador...:", dataSave.adminQueueId);
+				angular.forEach($scope.profileGeneral, function(value, key){
+				    if(value.profileId == dataSave.profileId){
+				    	console.log("Validando identificador...:", dataSave.profileId);
 				      	existId = true;
 				    }
 				});
@@ -185,13 +200,17 @@ angular.module('app.controllers')
 				console.log("Inicio de disponibilidad para editar...:", valRow);
 				closeAlert();
 				stateNew = false;
-				$scope.selectQueue = angular.copy(valRow);
+				$scope.selectProfile = angular.copy(valRow);
 
-				if(!$scope.selectQueue.messageType.supportedMessageFormats.messageFormatId){
-					$scope.selectQueue.messageType.supportedMessageFormats.messageFormatId = [];
+				if(!$scope.selectProfile.profileDrivers.driverIds){
+					$scope.selectProfile.profileDrivers.driverIds = [];
+				}
+				if(!$scope.selectProfile.authServices.serviceIds){
+					$scope.selectProfile.authServices.serviceIds = [];
 				} 
 
-				$scope.selectionMessage = $scope.selectQueue.messageType.supportedMessageFormats.messageFormatId;
+				$scope.selectionDriver = $scope.selectProfile.profileDrivers.driverIds;
+				$scope.selectionService = $scope.selectProfile.authServices.serviceIds;
 			};
 			
 			$scope.quitar = function(valId){
@@ -206,18 +225,26 @@ angular.module('app.controllers')
 				});
 			};
 
-			$scope.getSelectionMessage = function getSelectionMessage(filter) {
-			    var idy = $scope.selectionMessage.indexOf(filter);
+			$scope.getSelectionDriver = function getSelectionDriver(filter) {
+			    var idy = $scope.selectionDriver.indexOf(filter);
 			    if (idy > -1) {
-			    	$scope.selectionMessage.splice(idy, 1);
+			    	$scope.selectionDriver.splice(idy, 1);
 			    }else {
-			    	$scope.selectionMessage.push(filter);
+			    	$scope.selectionDriver.push(filter);
 			    }
-			    console.log("lista message: ", $scope.selectionMessage);
-			    console.log("lista AdminQueue: ", $scope.selectQueue);
+			    console.log("lista driver: ", $scope.selectionDriver);
+			};
+
+			$scope.getSelectionService = function getSelectionService(filter) {
+			    var idy = $scope.selectionService.indexOf(filter);
+			    if (idy > -1) {
+			    	$scope.selectionService.splice(idy, 1);
+			    }else {
+			    	$scope.selectionService.push(filter);
+			    }
+			    console.log("lista service: ", $scope.selectionService);
 			};
 //***********Fin de Botones de proceso, controles
 			
-
 		}
 	]);

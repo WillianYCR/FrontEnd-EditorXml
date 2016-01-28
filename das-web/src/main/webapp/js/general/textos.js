@@ -36,7 +36,7 @@ angular.module('app.textos', [])
 	refreshTime: 'T. Refrescar:',
 	//******Descripcion de los Tag
 	adminQueueId: 'Identificador:',
-	workerThreadsCount: 'N° hilos soportados:',
+	workerThreadsCount: 'N° hilos:',
 	messageType: 'TIPO DE MENSAJERIA',
 	messageTypeId: 'Id. mensaje:',
 	messageTypeDesc: 'Descripcion:',
@@ -79,6 +79,7 @@ angular.module('app.textos', [])
 	maxConcurrentConnectionsTbl: 'Conexiones',
 	forwardProcessTbl: 'Destino',
 	validaIpTbl: 'Validar',
+	opcionActionTbl: 'Accion',
 	concurrentUserSupportTbl: 'Permiso'
 })
 .constant('balancerTexto', {
@@ -93,7 +94,7 @@ angular.module('app.textos', [])
 	id: 'Codigo:',
 	//******Descripcion de los Tag
 	algorithm: 'Algoritmo:',
-	workerThreadsCount: 'Modo operacion:',
+	workerThreadsCount: 'N° Hilos:',
 	//Tabla de balanceadores
 	idTbl: 'Codigo',
 	algorithmTbl: 'Algoritmo',
@@ -122,7 +123,7 @@ angular.module('app.textos', [])
 	serviceId: 'Identificador:',
 	serviceDesc: 'Descripcion:',
 	discriminationRules: 'Reglas:',
-	authorizationBins: 'Autorizador:',
+	authorizationBins: 'Autorizadores:',
 	binId: 'Bin Id:',
 	binStatus: 'Bin Estado:',
 	routes: 'Routes:',
@@ -160,7 +161,6 @@ angular.module('app.textos', [])
 	serviceChannelPort: 'Routes:',
 
 	authorizedServices: 'Servicios autorizados:',
-
 	
 	connectTimeOut: 'T. Conexion:',
 	readTimeOut: 'T. Lectura:',
@@ -187,6 +187,44 @@ angular.module('app.textos', [])
 	defaultChannelTbl: 'Default',
 	opcionActionTbl: 'Accion'
 })
+.constant('profileTexto', {
+	//Descripcion de las controles individuales
+	titulo: 'CONFIGURADOR DE PERFILES',
+	//******Descripcion de los Tag
+	profileId: 'Identificador:',
+	profileDesc: 'Descripcion:',
+	profileDrivers: 'Perfil Drivers:',
+	driverIds: 'Drivers:',
+	authServices: 'Autorizador service:',
+	serviceIds: 'Services:',
+	//Tabla de balanceadores
+	profileIdTbl: 'Codigo',
+	profileDescTbl: 'Descripcion',
+	opcionActionTbl: 'Accion'
+})
+.constant('clientTexto', {
+	//Descripcion de las controles individuales
+	titulo: 'CONFIGURADOR DE CLIENTES',
+	//******Descripcion de los Tag
+	sixadcClientId: 'Identificador:',
+	sixadcClientDesc: 'Descripcion:',
+	atributo: 'Atributos:',
+	atrName: 'Nombre atributo:',
+	atrValor: 'Valor atributo:',
+	ipAddress: 'Ip Address:',
+	sixHostname: 'Hostname:',
+	sixUsername: 'Username:',
+	sixPassword: 'Password:',
+	enabled: 'Estado:',
+	profileId: 'Perfiles:',
+	//Tabla de balanceadores
+	sixadcClientIdTbl: 'Codigo',
+	sixadcClientDescTbl: 'Descripcion',
+	sixHostnameTbl: 'Hostname',
+	sixUsernameTbl: 'Username',
+	enabledTbl: 'Estado',
+	opcionActionTbl: 'Accion'
+})
 .constant('botonTexto', {
 	//Indice de menu general
 	formateador: 'Formateador',
@@ -196,7 +234,8 @@ angular.module('app.textos', [])
 	router: 'Router',
 	servicio: 'Servicio',
 	nodo: 'Nodo',
-	perfil: 'Perfil'
+	perfil: 'Perfil',
+	sixadcClient: 'Cliente'
 })
 .constant('queryRuta', {
 	//Atributos generales para todos los tag
@@ -212,5 +251,7 @@ angular.module('app.textos', [])
 	urlRoute: 'http://localhost:8080/ResDAS/Route',
 	urlDriver: 'http://localhost:8080/ResDAS/Driver',
 	urlService: 'http://localhost:8080/ResDAS/Service',
-	urlServiceNode: 'http://localhost:8080/ResDAS/ServiceNode'
+	urlServiceNode: 'http://localhost:8080/ResDAS/ServiceNode',
+	urlProfile: 'http://localhost:8080/ResDAS/Profile',
+	urlSixadcClient: 'http://localhost:8080/ResDAS/SixadcClient'
 });

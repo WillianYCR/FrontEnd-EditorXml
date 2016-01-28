@@ -1,0 +1,99 @@
+<div class="container" name="formulario"
+	<div>
+		<form class="form-group" name="formulario">
+			<h4>{{profileTexto.titulo}}</h4>
+			<div class="panel panel-default" style="width: 600px">
+				<div class="panel-body">
+					
+					<span  class="glyphicon" style="color: red;"	
+							ng-show="!formulario.$pristine && 
+							formulario.profileId.$error.required">*</span>
+					<label>{{profileTexto.profileId}}</label> 
+					<input type="text" style="width: 150px" name="profileId" 
+							class="form-control" placeholder="Codigo ..."
+						 	ng-model="selectProfile.profileId" required> 
+				
+					<span  class="glyphicon" style="color: red;"	
+							ng-show="!formulario.$pristine && 
+							formulario.profileDesc.$error.required">*</span>
+					<label>{{profileTexto.profileDesc}}</label>
+					<input type="text" style="width: 300px" name="profileDesc" 
+							class="form-control"
+						 	ng-model="selectProfile.profileDesc" required> 
+
+					<hr width="100%" size="10"/>
+
+	                <label>{{profileTexto.driverIds}}</label>
+	                <div class="checkbox" style="width: 600px">
+	                	<label ng-repeat="myDriver in listDriver" style="width: 200px"
+	                			ng-model="selectProfile.profileDrivers.driverIds" >
+					  	<input 
+						    type="checkbox"
+						    name="driver"
+						    value="{{myDriver.driverId}}"
+						    ng-checked="selectionDriver.indexOf(myDriver.driverId) > -1"
+						    ng-click="getSelectionDriver(myDriver.driverId)"> {{myDriver.driverId}}
+						</label>
+	                </div>
+
+	                <hr width="100%" size="10"/>
+
+	                <label>{{profileTexto.serviceIds}}</label>
+	                <div class="checkbox" style="width: 600px">
+	                	<label ng-repeat="myService in listService" style="width: 200px"
+	                			ng-model="selectProfile.authServices.serviceIds" >
+					  	<input 
+						    type="checkbox"
+						    name="service"
+						    value="{{myService.serviceId}}"
+						    ng-checked="selectionService.indexOf(myService.serviceId) > -1"
+						    ng-click="getSelectionService(myService.serviceId)"> {{myService.serviceId}}
+						</label>
+	                </div>
+	                
+					<hr width="100%" size="14"/>
+
+					<button class="btn btn-primary glyphicon glyphicon-file" ng-click="nuevo()">
+					</button>
+					<button class="btn btn-primary glyphicon glyphicon-floppy-disk" 
+							ng-click="grabar(selectProfile)" ng-disabled="!formulario.$valid">
+					</button>
+					<button class="btn btn-primary glyphicon glyphicon-refresh" ng-click="refrescar()">
+					</button>
+				</div>
+			</div>
+
+			<div class="row" ng-hide="hideAlert">
+				<div class="col-md-6">
+					<div class="alert alert-{{responseRestTag}}">
+					  <strong>Respuesta :</strong> {{responseRest}}
+					</div>
+				</div>
+			</div>
+
+			<table class="table" cellspacing="0" style="width: 600px">
+			    <thead>
+			     	<tr>
+			     		<th align="right" style="width: 30px">Num</th>
+				        <th style="width: 150px">{{profileTexto.profileIdTbl}}</th>
+				        <th style="width: 320px">{{profileTexto.profileDescTbl}}</th>
+				        <th style="width: 100px">{{profileTexto.opcionActionTbl}}</th>
+			      	</tr>
+			    </thead>
+			    <tbody>
+			      	<tr class="success" ng-repeat="valueRow in profileGeneral">
+			      		<td>{{$index + 1}}</td>
+				        <td>{{valueRow.profileId}}</td>
+				        <td>{{valueRow.profileDesc}}</td>
+				        <td >
+				        	<button class="btn btn-success btn-xs glyphicon glyphicon-pencil" 
+				        			ng-click="editar(valueRow)"></button>
+				        	<button class="btn btn-danger btn-xs glyphicon glyphicon-trash" 
+				        			ng-click="quitar(valueRow.profileId)"></button>
+				        </td>
+			      	</tr>
+			    </tbody>
+			</table>
+		</form>
+	</div>
+</div>

@@ -9,7 +9,7 @@
 							ng-show="!formulario.$pristine && 
 							formulario.serviceId.$error.required">*</span>
 					<label>{{serviceTexto.serviceId}}</label> 
-					<input type="text" style="width: 150px" name="serviceId" 
+					<input type="text" style="width: 160px" name="serviceId" 
 							class="form-control" placeholder="Codigo ..."
 						 	ng-model="selectService.serviceId" required> 
 				
@@ -22,25 +22,26 @@
 						 	ng-model="selectService.serviceDesc" required> 
 					
 					<label>{{serviceTexto.discriminationRules}}</label>
-					<input type="text" style="width: 150px" name="discriminationRules" 
+					<input type="text" style="width: 160px" name="discriminationRules" 
 							class="form-control"  
 							ng-model="selectService.discriminationRules"> 
 
 					<hr width="100%" size="10"/>
-<!--Pendiente
-	                <label>{{serviceTexto.routes}}</label>
-	                <div class="checkbox" style="width: 600px">
-	                	<label ng-repeat="myRoute in listRoute" style="width: 200px"
-	                			ng-model="selectService.routes.routeId" >
-					  	<input 
-						    type="checkbox"
-						    name="route"
-						    value="{{myRoute.routeId}}"
-						    ng-checked="selectionRoute.indexOf(myRoute.routeId) > -1"
-						    ng-click="getselectionRoute(myRoute.routeId)"> {{myRoute.routeId}}
+
+					<label>{{serviceTexto.authorizationBins}}</label>
+					<input type="text" class="form-control" ng-model="valAddTxt" name="authorizationBins"
+							style="width: 160px" my-enter="createOption()" 
+							placeholder="Ingrese bin...Enter!!"/>
+				
+					<div class="checkbox" style="width: 590px">
+	                	<label ng-repeat="valBin in selectService.authorizationBins.bin" style="width: 190px">
+						    <span class="glyphicon glyphicon-remove-circle" style="color: red;"
+						    		ng-click="deleteOption(valBin.binId)"></span>
+						    <span> {{valBin.binId}} </span>
+						    <span> {{valBin.binStatus}} </span>
 						</label>
 	                </div>
--->			
+
 					<hr width="100%" size="10"/>
 
 	                <label>{{serviceTexto.routes}}</label>
@@ -69,7 +70,7 @@
 			</div>
 
 			<div class="row" ng-hide="hideAlert">
-				<div class="col-md-7">
+				<div class="col-md-6">
 					<div class="alert alert-{{responseRestTag}}">
 					  <strong>Respuesta :</strong> {{responseRest}}
 					</div>
@@ -79,6 +80,7 @@
 			<table class="table" cellspacing="0" style="width: 600px">
 			    <thead>
 			     	<tr>
+			     		<th align="right" style="width: 30px">Num</th>
 				        <th style="width: 100px">{{serviceTexto.serviceIdTbl}}</th>
 				        <th style="width: 30px">{{serviceTexto.serviceDescTbl}}</th>
 				        <th style="width: 100px">{{serviceTexto.discriminationRulesTbl}}</th>
@@ -87,6 +89,7 @@
 			    </thead>
 			    <tbody>
 			      	<tr class="success" ng-repeat="valueRow in serviceGeneral.services">
+			      		<td>{{$index + 1}}</td>
 				        <td>{{valueRow.serviceId}}</td>
 				        <td>{{valueRow.serviceDesc}}</td>
 				        <td>{{valueRow.discriminationRules}}</td>

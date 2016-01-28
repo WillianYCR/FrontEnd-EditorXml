@@ -1,20 +1,21 @@
 angular.module('app.controllers')
-.controller('adminQueueController',
-	['$scope', '$http', '$state',  'queryRuta', 'queueTxt',
-		function($scope,  $http, $state, $queryRuta, queueTxt){
+.controller('clientController',
+	['$scope', '$http', '$state',  'queryRuta', 'clientTexto',
+		function($scope,  $http, $state, $queryRuta, clientTexto){
 	// establece el texto en la applicacion
-			$scope.queueTxt = queueTxt;
+			$scope.clientTexto = clientTexto;
 			//variables de inicio
-			$scope.adminQueueGeneral = {}; //almacena toda la data del servicio del objeto "AdminQueues"
-			$scope.selectQueue = { messageType:{  
-												supportedMessageFormats:
-													{messageFormatId:[]}
-											}
-								 }; //es parte No dependeiente de la data general(AdminQueues.adminQueues), 
-									 //es usado para mostrar la data y ser enviado paraguardar
+			$scope.clientGeneral = {}; //almacena toda la data del servicio
+			$scope.selectClient = { atributos:{atributo:[]},
+									ipAddresses:{ipAddresses:[]},
+									sixadcClientProfiles:{profileId:[]}
+								 }; //es parte No dependeiente de la data general, 
+									 //es usado para mostrar la data y ser enviado para guardar
 			
-			$scope.listMessageFormat = []; //Lista de la data servicio del objetoMEssageFormat
-			$scope.selectionMessage = [];//Valores seleccionados de los formatos
+			$scope.constantEnabled = [{"enabled":"true"},{"enabled":"false"}];
+
+			$scope.listProfile = []; //Lista de la data servicio del objeto Profile
+			$scope.selectionProfile = [];//Valores seleccionados de profile
 
 			$scope.responseRest = ""; //Mensaje de la respuesta generada por las consultas y validaciones
 			$scope.responseRestTag = ""; //Estilo de la respuesta generada por las consultas y validaciones
@@ -24,28 +25,28 @@ angular.module('app.controllers')
 
 //***********Inicio de proceso por default
 			readData();
-			readDataFormat();
+			readDataProfile();
 //***********Fin de proceso por default
 
 //***********Inicio Consulta servicio rest
 			function readData() {
 				console.log("Procesando SELECT...");
-				$http.get($queryRuta.urlAdminQueue)
+				$http.get($queryRuta.urlSixadcClient)
 					.success(function(data){
-						console.log("N° registros de colas:", data.adminQueues.length);
-						$scope.adminQueueGeneral = data;
+						console.log("N° registros de clientes:", data.sixadcClients.length);
+						$scope.clientGeneral = data.sixadcClients;
 					})
 					.error(function(data, status) {
 						console.log(status);
 						responseData(data);
 					});
 			}
-			function readDataFormat() {
+			function readDataProfile() {
 				console.log("Procesando SELECT...");
-				$http.get($queryRuta.urlMessageFormat)
+				$http.get($queryRuta.urlProfile)
 					.success(function(data){
-						console.log("N° registros formateos:", data.messageFormats.length);
-						$scope.listMessageFormat = data.messageFormats;
+						console.log("N° registros profile:", data.profiles.length);
+						$scope.listProfile = data.profiles;
 					})
 					.error(function(data, status) {
 						console.log(status);
@@ -55,7 +56,7 @@ angular.module('app.controllers')
 
 			function saveData(parData) {
 				console.log("Procesando SAVE...:" , parData);
-				$http.post($queryRuta.urlAdminQueue, parData)
+				$http.post($queryRuta.urlSixadcClient, parData)
 					.success(function(data){
 						responseData(data);
 						refreshData();
@@ -68,7 +69,7 @@ angular.module('app.controllers')
 
 			function updateData(parData) {
 				console.log("Procesando UPDATE...:" , parData);
-				$http.put($queryRuta.urlAdminQueue, parData)
+				$http.put($queryRuta.urlSixadcClient, parData)
 					.success(function(data){
 						responseData(data);
 						refreshData();
@@ -81,7 +82,7 @@ angular.module('app.controllers')
 
 			function deleteData(parId) {
 				console.log("Procesando DELETE...", parId);
-				$http.delete($queryRuta.urlAdminQueue + '/' + parId).
+				$http.delete($queryRuta.urlSixadcClient + '/' + parId).
 					success(function(data){
 						responseData(data);
 						refreshData();
@@ -97,7 +98,7 @@ angular.module('app.controllers')
 			function refreshData (){
 				console.log("Refrescando la data...");
 				readData();	
-				readDataFormat();
+				readDataProfile();
 				limpiarCampos();			
 			}
 
@@ -132,11 +133,19 @@ angular.module('app.controllers')
 
 			function limpiarCampos(){
 				stateNew = true;
-				$scope.selectQueue.adminQueueId = "";
-				$scope.selectQueue.workerThreadsCount = "";
-				$scope.selectQueue.messageType.messageTypeId = "";
-				$scope.selectQueue.messageType.messageTypeDesc = "";
-				$scope.selectionMessage = [];
+				$scope.selectClient.sixadcClientId = "";
+				$scope.selectClient.sixadcClientDesc = "";
+
+				$scope.selectClient.sixHostname = "";
+				$scope.selectClient.sixUsername = "";
+				$scope.selectClient.sixPassword = "";
+				$scope.selectClient.enabled = "";
+				$scope.selectionProfile = [];
+				$scope.selectClient.ipAddresses.ipAddresses = [];
+				$scope.selectClient.atributos.atributos = [];
+				$scope.valAddTxt = '';
+				$scope.valAddName = '';
+		        $scope.valAddValor = '';
 			}
 //***********Fin de metodos Fijos para mantener actualizado la informacion
 			
@@ -149,18 +158,22 @@ angular.module('app.controllers')
 			$scope.refrescar = function(){
 				stateNew = true;
 				readData();
-				readDataFormat();
+				readDataProfile();
 				closeAlert();
 			};
 
+			$scope.demo = function(){
+				//Prueba
+				console.log("Lista de Ips: ", $scope.selectClient.ipAddresses.ipAddresses);
+			};
+
 			$scope.grabar = function(dataSave){
-				console.log("Inicio de evento grabar...:" , dataSave);
-				$scope.selectQueue.messageType.supportedMessageFormats.messageFormatId = $scope.selectionMessage;
+				$scope.selectClient.sixadcClientProfiles.profileId = $scope.selectionProfile;
 				console.log("Inicio de evento grabar Cargado...:" , dataSave);
 				var existId = false;
-				angular.forEach($scope.adminQueueGeneral.adminQueues, function(value, key){
-				    if(value.adminQueueId == dataSave.adminQueueId){
-				    	console.log("Validando identificador...:", dataSave.adminQueueId);
+				angular.forEach($scope.clientGeneral, function(value, key){
+				    if(value.sixadcClientId == dataSave.sixadcClientId){
+				    	console.log("Validando identificador...:", dataSave.sixadcClientId);
 				      	existId = true;
 				    }
 				});
@@ -185,13 +198,13 @@ angular.module('app.controllers')
 				console.log("Inicio de disponibilidad para editar...:", valRow);
 				closeAlert();
 				stateNew = false;
-				$scope.selectQueue = angular.copy(valRow);
+				$scope.selectClient = angular.copy(valRow);
 
-				if(!$scope.selectQueue.messageType.supportedMessageFormats.messageFormatId){
-					$scope.selectQueue.messageType.supportedMessageFormats.messageFormatId = [];
+				if(!$scope.selectClient.sixadcClientProfiles.profileId){
+					$scope.selectClient.sixadcClientProfiles.profileId = [];
 				} 
 
-				$scope.selectionMessage = $scope.selectQueue.messageType.supportedMessageFormats.messageFormatId;
+				$scope.selectionProfile = $scope.selectClient.sixadcClientProfiles.profileId;
 			};
 			
 			$scope.quitar = function(valId){
@@ -206,18 +219,57 @@ angular.module('app.controllers')
 				});
 			};
 
-			$scope.getSelectionMessage = function getSelectionMessage(filter) {
-			    var idy = $scope.selectionMessage.indexOf(filter);
+			$scope.createOptionIp = function() {
+				if(!$scope.selectClient.ipAddresses.ipAddresses){
+					$scope.selectClient.ipAddresses.ipAddresses = [];
+				}
+		        $scope.selectClient.ipAddresses.ipAddresses.push($scope.valAddTxt);
+		        $scope.valAddTxt = '';
+		    };
+
+		    $scope.createOptionAtrib = function() {
+				if(!$scope.selectClient.atributos.atributos){
+					$scope.selectClient.atributos.atributos = [];
+				}
+		        $scope.selectClient.atributos.atributos.push({ nombre: $scope.valAddName, valor : $scope.valAddValor});
+		        $scope.valAddName = '';
+		        $scope.valAddValor = '';
+		    };
+
+		    $scope.deleteOptionIp = function(parId) {
+		    	console.log("Inicio de quitar Ip...:" , parId);
+			    var valores = $scope.selectClient.ipAddresses.ipAddresses;
+		        $scope.selectClient.ipAddresses.ipAddresses = [];
+		        angular.forEach(valores, function(valIps) {
+		            if (valIps != parId){
+		               $scope.selectClient.ipAddresses.ipAddresses.push(valIps);
+		           }
+				});
+				console.log("Lista Ips: ", $scope.selectClient.ipAddresses.ipAddresses);
+		    };
+
+		    $scope.deleteOptionAtrib = function(parNombre) {
+		    	console.log("Inicio de quitar el atributo...:" , parNombre);
+			    var valores = $scope.selectClient.atributos.atributos;
+		        $scope.selectClient.atributos.atributos = [];
+		        angular.forEach(valores, function(valAtributo) {
+		            if (valAtributo.nombre != parNombre){
+		               $scope.selectClient.atributos.atributos.push(valAtributo);
+		           }
+				});
+				console.log("Lista Atributos: ", $scope.selectClient.atributos.atributos);
+		    };
+
+			$scope.getSelectionProfile = function getSelectionProfile(filter) {
+			    var idy = $scope.selectionProfile.indexOf(filter);
 			    if (idy > -1) {
-			    	$scope.selectionMessage.splice(idy, 1);
+			    	$scope.selectionProfile.splice(idy, 1);
 			    }else {
-			    	$scope.selectionMessage.push(filter);
+			    	$scope.selectionProfile.push(filter);
 			    }
-			    console.log("lista message: ", $scope.selectionMessage);
-			    console.log("lista AdminQueue: ", $scope.selectQueue);
+			    console.log("lista profile: ", $scope.selectionProfile);
 			};
 //***********Fin de Botones de proceso, controles
 			
-
 		}
 	]);

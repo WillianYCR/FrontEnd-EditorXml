@@ -2,7 +2,7 @@
 	<div>
 		<form class="form-group" name="formulario">
 			<h4>{{routeTexto.titulo}}</h4>
-			<div class="panel panel-default" style="width: 500px">
+			<div class="panel panel-default" style="width: 600px">
 				<div class="panel-body">
 
 					<span  class="glyphicon" style="color: red;"	
@@ -10,7 +10,7 @@
 							formulario.routeId.$error.required">*</span>
 					<label>{{routeTexto.routeId}}</label> 
 					<input type="text" style="width: 150px"  name="routeId" 
-							class="form-control" 
+							class="form-control" placeholder="Codigo ..."
 							ng-model="selectRoute.routeId" required> 
 
 					<span  class="glyphicon" style="color: red;"	
@@ -66,19 +66,19 @@
 			<table class="table" cellspacing="0" style="width: 600px">
 			    <thead>
 			     	<tr>
+			     		<th align="right" style="width: 30px">Num</th>
 				        <th style="width: 150px">{{routeTexto.routeIdTbl}}</th>
-				        <th style="width: 150px">{{routeTexto.routeDescTbl}}</th>
-				        <th style="width: 100px">{{routeTexto.balancerIdTbl}}</th>
-				        <th style="width: 100px">{{routeTexto.statusTbl}}</th>
+				        <th style="width: 200px">{{routeTexto.routeDescTbl}}</th>
+				        <th style="width: 120px">{{routeTexto.balancerIdTbl}}</th>
 				        <th style="width: 100px">{{routeTexto.opcionActionTbl}}</th>
 			      	</tr>
 			    </thead>
 			    <tbody>
 			      	<tr class="success" ng-repeat="valueRow in listRoute">
+			      		<td>{{$index + 1}}</td>
 				        <td>{{valueRow.routeId}}</td>
 				        <td>{{valueRow.routeDesc}}</td>
 				        <td>{{valueRow.balancerId}}</td>
-				        <td>{{valueRow.status}}</td>
 				        <td >
 				        	<button class="btn btn-success btn-xs glyphicon glyphicon-pencil" 
 				        			ng-click="editar(valueRow)"></button>

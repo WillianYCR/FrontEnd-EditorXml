@@ -32,44 +32,60 @@
 
 					<hr width="100%" size="10"/>
 
-					<span  class="glyphicon" style="color: red;"	
-							ng-show="!formulario.$pristine && 
-							formulario.adminQueueId.$error.required">*</span>
-					<label>{{queueTxt.adminQueueId}}</label> 
-					<input type="text" style="width: 150px" name="adminQueueId" 
-							class="form-control" placeholder="Codigo ..."
-						 	ng-model="selectQueue.adminQueueId" required> 
-				
-					<span  class="glyphicon" style="color: red;"	
-							ng-show="!formulario.$pristine && 
-							formulario.workerThreadsCount.$error.required">*</span>
-					<label>{{queueTxt.workerThreadsCount}}</label>
-					<input type="text" style="width: 300px" name="workerThreadsCount" 
-							class="form-control"
-						 	ng-model="selectQueue.workerThreadsCount" required> 
-					
-					<span  class="glyphicon" style="color: red;"	
-							ng-show="!formulario.$pristine && 
-							formulario.messageTypeId.$error.required">*</span>
-					<label>{{queueTxt.messageTypeId}}</label>
-					<input type="text" style="width: 150px" name="messageTypeId" 
-							class="form-control"  
-							ng-model="selectQueue.messageType.messageTypeId" required> 
+					<div class="row" style="width:700px">
+						
+						<div class="col-md-4">
+							<span  class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.adminQueueId.$error.required">*</span>
+							<label>{{queueTxt.adminQueueId}}</label> 
+							<input type="text" style="width: 150px" name="adminQueueId" 
+									class="form-control" placeholder="Codigo ..."
+								 	ng-model="selectQueue.adminQueueId" required> 
+						</div>
 
-					<span  class="glyphicon" style="color: red;"	
-							ng-show="!formulario.$pristine && 
-							formulario.messageTypeDesc.$error.required">*</span>		
-					<label>{{queueTxt.messageTypeDesc}}</label>
-					<input type="text" style="width: 300px" name="messageTypeDesc" 
-							class="form-control"  
-							ng-model="selectQueue.messageType.messageTypeDesc" required>
+						<div class="col-md-4">
+							<span  class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.workerThreadsCount.$error.required">*</span>
+							<label>{{queueTxt.workerThreadsCount}}</label>
+							<input type="text" style="width: 150px" name="workerThreadsCount" 
+									class="form-control"
+								 	ng-model="selectQueue.workerThreadsCount" required> 
+						</div>
+						<div class="col-md-4"/>
+					</div>
 					
+					<div class="row" style="width:700px">
+						
+						<div class="col-md-4">
+							<span  class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.messageTypeId.$error.required">*</span>
+							<label>{{queueTxt.messageTypeId}}</label>
+							<input type="text" style="width: 150px" name="messageTypeId" 
+									class="form-control"  
+									ng-model="selectQueue.messageType.messageTypeId" required> 
+						</div>
+
+						<div class="col-md-8">
+							<span  class="glyphicon" style="color: red;"	
+									ng-show="!formulario.$pristine && 
+									formulario.messageTypeDesc.$error.required">*</span>		
+							<label>{{queueTxt.messageTypeDesc}}</label>
+							<input type="text" style="width: 400px" name="messageTypeDesc" 
+									class="form-control"  
+									ng-model="selectQueue.messageType.messageTypeDesc" required>
+						</div>
+
+					</div>
+
 					<hr width="100%" size="10"/>
 
 					<!--Lista de los formatos soportados para las colas-->
 	                <label>{{queueTxt.supportedMessageFormats}}</label>
 	                <div class="checkbox" style="width: 700px">
-	                	<label ng-repeat="myMessage in listMessageFormat" style="width: 100px"
+	                	<label ng-repeat="myMessage in listMessageFormat" style="width: 150px"
 	                			ng-model="selectQueue.messageType.supportedMessageFormats.messageFormatId" >
 					  	<input 
 						    type="checkbox"
@@ -100,18 +116,20 @@
 				</div>
 			</div>
 
-			<table class="table" cellspacing="0" style="width: 650px">
+			<table class="table" cellspacing="0" style="width: 700px">
 			    <thead>
 			     	<tr>
+			     		<th align="right" style="width: 30px">Num</th>
 				        <th style="width: 120px">{{queueTxt.adminQueueIdTbl}}</th>
 				        <th style="width: 70px">{{queueTxt.workerThreadsCountTbl}}</th>
 				        <th style="width: 120px">{{queueTxt.messageTypeIdTbl}}</th>
-				        <th style="width: 240px">{{queueTxt.messageTypeDescTbl}}</th>
+				        <th style="width: 260px">{{queueTxt.messageTypeDescTbl}}</th>
 				        <th style="width: 100px">{{queueTxt.opcionActionTbl}}</th>
 			      	</tr>
 			    </thead>
 			    <tbody>
 			      	<tr class="success" ng-repeat="valueRow in adminQueueGeneral.adminQueues">
+			      		<td>{{$index + 1}}</td>
 				        <td>{{valueRow.adminQueueId}}</td>
 				        <td>{{valueRow.workerThreadsCount}}</td>
 				        <td>{{valueRow.messageType.messageTypeId}}</td>

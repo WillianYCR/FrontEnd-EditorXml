@@ -2,7 +2,7 @@
 	<div>
 		<form class="form-group" name="formulario">
 			<h4>{{balancerTexto.titulo}}</h4>
-			<div class="panel panel-default" style="width: 500px">
+			<div class="panel panel-default" style="width: 600px">
 				<div class="panel-body">
 
 					<span  class="glyphicon" style="color: red;"	
@@ -48,17 +48,19 @@
 				</div>
 			</div>
 
-			<table class="table" cellspacing="0" style="width: 500px">
+			<table class="table" cellspacing="0" style="width: 600px">
 			    <thead>
 			     	<tr>
-				        <th style="width: 150px">{{balancerTexto.idTbl}}</th>
-				        <th style="width: 150px">{{balancerTexto.algorithmTbl}}</th>
+			     		<th align="right" style="width: 30px">Num</th>
+				        <th style="width: 180px">{{balancerTexto.idTbl}}</th>
+				        <th style="width: 190px">{{balancerTexto.algorithmTbl}}</th>
 				        <th style="width: 100px">{{balancerTexto.workerThreadsCountTbl}}</th>
 				        <th style="width: 100px">{{balancerTexto.opcionActionTbl}}</th>
 			      	</tr>
 			    </thead>
 			    <tbody>
 			      	<tr class="success" ng-repeat="valueRow in listBalancer">
+			      		<td>{{$index + 1}}</td>
 				        <td>{{valueRow.id}}</td>
 				        <td>{{valueRow.algorithm}}</td>
 				        <td>{{valueRow.workerThreadsCount}}</td>

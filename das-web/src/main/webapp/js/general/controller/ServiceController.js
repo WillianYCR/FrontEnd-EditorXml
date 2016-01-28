@@ -25,7 +25,7 @@ angular.module('app.controllers')
 			readDataRoute();
 //***********Fin de proceso por default
 
-//***********Inicio Consulta servicio rest - "Servicio" y "Route"
+//***********Inicio Consulta servicio rest
 			function readData() {
 				console.log("Procesando SELECT...");
 				$http.get($queryRuta.urlService)
@@ -89,7 +89,7 @@ angular.module('app.controllers')
 						responseData(data);
 					});
 			}
-//***********Inicio Consulta servicio rest - "Servicio" y "Route"
+//***********Inicio Consulta servicio rest
 
 //***********Inicio de metodos Fijos para mantener actualizado la informacion
 			function refreshData (){
@@ -133,8 +133,9 @@ angular.module('app.controllers')
 				$scope.selectService.serviceId = "";
 				$scope.selectService.serviceDesc = "";
 				$scope.selectService.discriminationRules = "";
-				//$scope.selectService.messageType.messageTypeDesc = "";
 				$scope.selectionRoute = [];
+				$scope.selectService.authorizationBins.bin = [];
+				$scope.valAddTxt = '';
 			}
 //***********Fin de metodos Fijos para mantener actualizado la informacion
 			
@@ -149,6 +150,11 @@ angular.module('app.controllers')
 				readData();
 				readDataRoute();
 				closeAlert();
+				//Prueba con textarea
+				$scope.valor = {};
+				console.log("Datos del textarea: ", $scope.binAutorizador);
+				
+
 			};
 
 			$scope.grabar = function(dataSave){
@@ -204,6 +210,26 @@ angular.module('app.controllers')
 				});
 			};
 
+			$scope.createOption = function() {
+				if(!$scope.selectService.authorizationBins.bin){
+					$scope.selectService.authorizationBins.bin = [];
+				}
+		        $scope.selectService.authorizationBins.bin.push( {binId: $scope.valAddTxt, binStatus:'AVAILABLE'});
+		        $scope.valAddTxt = '';
+		    };
+
+		    $scope.deleteOption = function(parId) {
+		    	console.log("Inicio de quitar bin...:" , parId);
+			    var valores = $scope.selectService.authorizationBins.bin;
+		        $scope.selectService.authorizationBins.bin = [];
+		        angular.forEach(valores, function(valBin) {
+		            if (valBin.binId != parId){
+		               $scope.selectService.authorizationBins.bin.push(valBin);
+		           }
+				});
+				console.log("Lista Bin: ", $scope.selectService.authorizationBins.bin);
+		    };
+		      
 			$scope.getSelectionRoute = function getSelectionRoute(filter) {
 			    var idy = $scope.selectionRoute.indexOf(filter);
 			    if (idy > -1) {

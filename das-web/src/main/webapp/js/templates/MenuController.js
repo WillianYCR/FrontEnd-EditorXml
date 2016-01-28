@@ -33,7 +33,10 @@ angular.module('app.controllers')
 		$state.go('serviceNode');
 	};
 	$scope.viewPerfil = function(){
-		$state.go('login');
+		$state.go('profile');
+	};
+	$scope.viewSixadcCliente = function(){
+		$state.go('sixadcClient');
 	};
 	
 }]);

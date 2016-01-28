@@ -53,5 +53,15 @@ angular.module('app', ['ui.router','app.controllers','app.directives','app.texto
 		url : '/serviceNode',
 		templateUrl : '../page/pageServiceNode.html',
 		controller : 'serviceNodeController'
+	})
+	.state('profile', {
+		url : '/profile',
+		templateUrl : '../page/pageProfile.html',
+		controller : 'profileController'
+	})
+	.state('sixadcClient', {
+		url : '/sixadcClient',
+		templateUrl : '../page/pageSixadcClient.html',
+		controller : 'clientController'
 	});
 }]);
